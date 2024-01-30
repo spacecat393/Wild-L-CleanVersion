@@ -1,0 +1,18 @@
+0 93 start wait
+94 242 loop wait
+243 312 end wait
+313 429 pat
+430 496 yes
+497 597 sad
+598 681 joy 1
+682 757 cool
+758 833 joy 2
+834 892 call
+893 958 attack short
+959 1043 attack long
+1044 1144 start sit 1
+1145 1245 loop sit 1
+1246 1296 end sit 1
+1297 1363 loop sit 2
+1364 1402 run
+1403 1432 walk

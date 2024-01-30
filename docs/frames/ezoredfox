@@ -1,0 +1,16 @@
+0 25 start walk
+26 84 loop walk
+85 110 end walk
+111 190 attack long
+191 241 attack short
+242 342 start sit
+343 543 loop sit
+544 594 end sit
+595 655 start wait
+656 693 loop wait
+694 799 end wait
+800 866 act yes
+867 950 act sad
+951 989 run
+990 1073 act joy
+1074 1163 idle

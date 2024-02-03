@@ -25,6 +25,37 @@ public class WildSandCat extends SkinningEntities
     public static int eggSecondary = 0x614c41;
     public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[SandCatData.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
+
+    public static int[] ATTACK_FRAME_INT_ARRAY = new int[]
+    {
+        911,
+        912,
+        913,
+        1004,
+        1005,
+        1006
+    };
+    public static int[][] FRAME_INT_2D_ARRAY = new int[][]
+    {
+        { 1403, 1432 },//walk
+        { 1364, 1402 },//run
+        { 313, 429 },//pat
+        { 1044, 1144 },//sit
+        { 1145, 1245 },
+        { 1246, 1296 },
+        { 0, 93 },//wait
+        { 94, 242 },
+        { 243, 312 },
+        { 430, 496 },//yes
+        { 497, 597 },//sad
+        { 598, 681 },//joy 1
+        { 834, 892 },//idle
+        { 682, 757 },//cool
+        { 959, 1043 },//attack long
+        { 893, 958 },//attack short
+        { 758, 833 }//joy 2
+    };
+
     public int client_eyes_tick = 0;
     public boolean server_how_attack;
     public byte server_pat_state;
@@ -142,47 +173,19 @@ public class WildSandCat extends SkinningEntities
     {
         this.server_skinningentitiesliveframe_array = new SkinningEntitiesLiveFrame[1];
 
-        this.skinningentitiesattack.attack_frame_int_array = new int[]
-        {
-            911,
-            912,
-            913,
-            1004,
-            1005,
-            1006
-        };
+        this.skinningentitiesattack.attack_frame_int_array = ATTACK_FRAME_INT_ARRAY;
         this.skinningentitiesattack.minimum_distance = 0.5D;
 
-        this.server_skinningentitiesliveframe_array[0] = new SkinningEntitiesLiveFrame(this, 0, new int[][]
-        {
-            { 1403, 1432 },//walk
-            { 1364, 1402 },//run
-            { 313, 429 },//pat
-            { 1044, 1144 },//sit
-            { 1145, 1245 },
-            { 1246, 1296 },
-            { 0, 93 },//wait
-            { 94, 242 },
-            { 243, 312 },
-            { 430, 496 },//yes
-            { 497, 597 },//sad
-            { 598, 681 },//joy 1
-            { 834, 892 },//idle
-            { 682, 757 },//cool
-            { 959, 1043 },//attack long
-            { 893, 958 },//attack short
-            { 758, 833 }//joy 2
-        });
-
+        this.server_skinningentitiesliveframe_array[0] = new SkinningEntitiesLiveFrame(this, 0, FRAME_INT_2D_ARRAY);
         this.server_skinningentitiesliveframe_array[0].condition_boolean_supplier_array = new Supplier[]
         {
             () -> this.isZeroMove() && this.server_skinningentitiesliveframe_array[0].setTLoopInSet(3, 4),
             () -> this.server_skinningentitiesliveframe_array[0].setFLoopInSet(3, 5) && this.skinningentitiesfindmove.endGoalT(),
-            () -> this.server_skinningentitiesliveframe_array[0].setFLoop(3, this.isZeroMove()),
+            () -> this.isZeroMove() && this.server_skinningentitiesliveframe_array[0].setFLoop(3),
 
             () -> this.server_work_byte_array[this.skinningentitiesbytes.SIT()] == 1 && this.server_skinningentitiesliveframe_array[0].setTLoopInSet(6, 7),
             () -> this.server_skinningentitiesliveframe_array[0].setFLoopInSet(6, 8) && this.skinningentitiesfindmove.endGoalT(),
-            () -> this.server_skinningentitiesliveframe_array[0].setFLoop(6, this.server_work_byte_array[this.skinningentitiesbytes.SIT()] == 1),
+            () -> this.server_work_byte_array[this.skinningentitiesbytes.SIT()] == 1 && this.server_skinningentitiesliveframe_array[0].setFLoop(6),
 
             () -> !(this.skinningentitiesattack.state == 0 || this.skinningentitiesattack.state == 1) && this.server_skinningentitiesliveframe_array[0].setFLoopOffSet(14, 14) && this.skinningentitiesfindmove.endGoalT(),
             () -> !(this.skinningentitiesattack.state == 0 || this.skinningentitiesattack.state == 1) && this.server_skinningentitiesliveframe_array[0].setFLoopOffSet(15, 15) && this.skinningentitiesfindmove.endGoalT(),
@@ -228,11 +231,11 @@ public class WildSandCat extends SkinningEntities
                 return result;
             },
 
-            () -> this.server_skinningentitiesliveframe_array[0].setTLoop(1, this.main_server_work_byte_array[this.skinningentitiesbytes.ATTACK()] == 1 && this.moveForward != 0),
-            () -> this.server_skinningentitiesliveframe_array[0].setTLoop(0, this.moveForward != 0),
+            () -> this.main_server_work_byte_array[this.skinningentitiesbytes.ATTACK()] == 1 && this.moveForward != 0 && this.server_skinningentitiesliveframe_array[0].setTLoop(1),
+            () -> this.moveForward != 0 && this.server_skinningentitiesliveframe_array[0].setTLoop(0),
 
-            () -> this.server_skinningentitiesliveframe_array[0].setFLoopFree(9, this.skinningentitiesbytes.HARD_READY(), this.server_work_byte_array[this.skinningentitiesbytes.HARD_READY()] == 1),
-            () -> this.server_skinningentitiesliveframe_array[0].setFLoopFree(10, this.skinningentitiesbytes.SOFT_READY(), this.server_work_byte_array[this.skinningentitiesbytes.SOFT_READY()] == 1),
+            () -> this.server_work_byte_array[this.skinningentitiesbytes.HARD_READY()] == 1 && this.server_skinningentitiesliveframe_array[0].setFLoopFree(9, this.skinningentitiesbytes.HARD_READY()),
+            () -> this.server_work_byte_array[this.skinningentitiesbytes.SOFT_READY()] == 1 && this.server_skinningentitiesliveframe_array[0].setFLoopFree(10, this.skinningentitiesbytes.SOFT_READY()),
 
             () ->
             {
@@ -276,7 +279,7 @@ public class WildSandCat extends SkinningEntities
                     }
                 }
 
-                return this.server_skinningentitiesliveframe_array[0].setFLoopFree(id, this.skinningentitiesbytes.ON_PAT(), result);
+                return result && this.server_skinningentitiesliveframe_array[0].setFLoopFree(id, this.skinningentitiesbytes.ON_PAT());
             },
             () -> this.server_skinningentitiesliveframe_array[0].setTLoop(12)
         };

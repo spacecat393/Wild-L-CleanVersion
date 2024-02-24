@@ -14,7 +14,6 @@ public class Wild
     @Instance
     public static Wild I;
 
-//    public static Logger LOGGER = LogManager.getLogger(Reference.MOD_ID);
     @EventHandler
     public void onFMLPreInitializationEvent(FMLPreInitializationEvent event)
     {
@@ -23,15 +22,4 @@ public class Wild
             DataLoader.setModels(RenderHelper.DATALOADER, Reference.MOD_ID);
         }
     }
-//    public static void error(Throwable t)
-//    {
-//        LOGGER.error(t);
-//        FMLCommonHandler.instance().exitJava(-1, true);
-//    }
-//
-//    public static void error(String s)
-//    {
-//        LOGGER.error(s);
-//        FMLCommonHandler.instance().exitJava(-1, true);
-//    }
 }

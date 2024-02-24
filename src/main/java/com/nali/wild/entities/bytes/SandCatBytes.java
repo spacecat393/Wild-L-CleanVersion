@@ -1,8 +1,8 @@
 package com.nali.wild.entities.bytes;
 
-import com.nali.small.entities.bytes.SkinningEntitiesBytes;
+import com.nali.small.entities.bytes.WorkBytes;
 
-public class SandCatBytes implements SkinningEntitiesBytes
+public class SandCatBytes implements WorkBytes
 {
     @Override
     public int LOCK_INVENTORY()

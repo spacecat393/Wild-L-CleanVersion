@@ -1,7 +1,6 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
-import com.nali.render.ObjectRender;
 import com.nali.render.SkinningRender;
 import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.memory.ClientEntitiesMemory;
@@ -10,8 +9,8 @@ import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.wild.data.SandCatData;
 import com.nali.wild.entities.bytes.SandCatBytes;
-import com.nali.wild.memory.client.ClientSandCatMemory;
-import com.nali.wild.memory.server.ServerSandCatMemory;
+import com.nali.wild.entities.memory.client.ClientSandCatMemory;
+import com.nali.wild.entities.memory.server.ServerSandCatMemory;
 import com.nali.wild.render.RenderHelper;
 import com.nali.wild.render.SandCatRender;
 import net.minecraft.entity.SharedMonsterAttributes;

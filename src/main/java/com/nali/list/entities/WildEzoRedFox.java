@@ -1,7 +1,6 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
-import com.nali.render.ObjectRender;
 import com.nali.render.SkinningRender;
 import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.memory.ClientEntitiesMemory;
@@ -10,8 +9,8 @@ import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.wild.data.EzoRedFoxData;
 import com.nali.wild.entities.bytes.EzoRedFoxBytes;
-import com.nali.wild.memory.client.ClientEzoRedFoxMemory;
-import com.nali.wild.memory.server.ServerEzoRedFoxMemory;
+import com.nali.wild.entities.memory.client.ClientEzoRedFoxMemory;
+import com.nali.wild.entities.memory.server.ServerEzoRedFoxMemory;
 import com.nali.wild.render.EzoRedFoxRender;
 import com.nali.wild.render.RenderHelper;
 import net.minecraft.entity.SharedMonsterAttributes;

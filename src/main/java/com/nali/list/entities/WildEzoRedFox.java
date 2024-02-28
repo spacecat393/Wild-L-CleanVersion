@@ -1,10 +1,10 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
+import com.nali.render.EntitiesRenderMemory;
 import com.nali.render.SkinningRender;
 import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.memory.ClientEntitiesMemory;
-import com.nali.small.entities.memory.server.ServerEntitiesMemory;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.wild.data.EzoRedFoxData;
@@ -27,6 +27,7 @@ public class WildEzoRedFox extends SkinningEntities
 {
     public static int eggPrimary = 0xffb56d;
     public static int eggSecondary = 0xc9453d;
+    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxData.MAX_SYNC];
     public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxData.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 
@@ -57,6 +58,11 @@ public class WildEzoRedFox extends SkinningEntities
 
     static
     {
+        for (int i = 0; i < BYTE_DATAPARAMETER_ARRAY.length; ++i)
+        {
+            BYTE_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildEzoRedFox.class, DataSerializers.BYTE);
+        }
+
         for (int i = 0; i < INTEGER_DATAPARAMETER_ARRAY.length; ++i)
         {
             INTEGER_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildEzoRedFox.class, DataSerializers.VARINT);
@@ -93,7 +99,7 @@ public class WildEzoRedFox extends SkinningEntities
             skinningrender.model_boolean_array[9] = false;
         }
 
-        float scale = skinningrender.scale;
+        float scale = skinningrender.entitiesrendermemory.scale;
         if ((frame > 241 && frame < 595) || (frame > 594 && frame < 800))
         {
             this.width = bothdata.Width() * scale;
@@ -242,6 +248,12 @@ public class WildEzoRedFox extends SkinningEntities
     }
 
     @Override
+    public DataParameter<Byte>[] getByteDataParameterArray()
+    {
+        return BYTE_DATAPARAMETER_ARRAY;
+    }
+
+    @Override
     public DataParameter<Integer>[] getIntegerDataParameterArray()
     {
         return INTEGER_DATAPARAMETER_ARRAY;
@@ -256,18 +268,18 @@ public class WildEzoRedFox extends SkinningEntities
     @Override
     public Object createObjectRender()
     {
-        return new EzoRedFoxRender(this.bothentitiesmemory.bothdata, RenderHelper.DATALOADER, this);
+        return new EzoRedFoxRender(new EntitiesRenderMemory(), this.bothentitiesmemory.bothdata, RenderHelper.DATALOADER, this);
     }
 
     @Override
-    public ClientEntitiesMemory createClientEntitiesMemory(BothData bothdata, WorkBytes workbytes)
+    public void createClientEntitiesMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
-        return new ClientEzoRedFoxMemory(bothdata, workbytes);
+        new ClientEzoRedFoxMemory(skinningentities, bothdata, workbytes);
     }
 
     @Override
-    public ServerEntitiesMemory createServerEntitiesMemory(BothData bothdata, WorkBytes workbytes)
+    public void createServerEntitiesMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
-        return new ServerEzoRedFoxMemory(bothdata, workbytes);
+        new ServerEzoRedFoxMemory(skinningentities, bothdata, workbytes);
     }
 }

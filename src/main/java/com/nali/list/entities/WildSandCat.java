@@ -1,10 +1,10 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
+import com.nali.render.EntitiesRenderMemory;
 import com.nali.render.SkinningRender;
 import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.memory.ClientEntitiesMemory;
-import com.nali.small.entities.memory.server.ServerEntitiesMemory;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.wild.data.SandCatData;
@@ -27,6 +27,7 @@ public class WildSandCat extends SkinningEntities
 {
     public static int eggPrimary = 0xffebc7;
     public static int eggSecondary = 0x614c41;
+    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[SandCatData.MAX_SYNC];
     public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[SandCatData.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 
@@ -62,6 +63,11 @@ public class WildSandCat extends SkinningEntities
 
     static
     {
+        for (int i = 0; i < BYTE_DATAPARAMETER_ARRAY.length; ++i)
+        {
+            BYTE_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildSandCat.class, DataSerializers.BYTE);
+        }
+
         for (int i = 0; i < INTEGER_DATAPARAMETER_ARRAY.length; ++i)
         {
             INTEGER_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildSandCat.class, DataSerializers.VARINT);
@@ -98,7 +104,7 @@ public class WildSandCat extends SkinningEntities
             skinningrender.model_boolean_array[3] = false;
         }
 
-        float scale = skinningrender.scale;
+        float scale = skinningrender.entitiesrendermemory.scale;
         if (frame > 1043 && frame < 1364)
         {
             this.width = bothdata.Width() * scale;
@@ -118,6 +124,22 @@ public class WildSandCat extends SkinningEntities
         skinningrender.model_boolean_array[7] = false;
         skinningrender.model_boolean_array[10] = false;
         skinningrender.model_boolean_array[11] = false;
+
+//        OpenGLSkinningMemory openglskinningmemory = (OpenGLSkinningMemory)cliententitiesmemory.objectrender.memory_object_array[2];
+//        for (int v = 0; v < openglskinningmemory.index_int_array.length; ++v)
+//        {
+//            int vi = openglskinningmemory.index_int_array[v] * 3;
+//            float x = openglskinningmemory.vertices_float_array[vi];
+//            float y = openglskinningmemory.vertices_float_array[vi + 1];
+//            float z = openglskinningmemory.vertices_float_array[vi + 2];
+//
+//            Vec3d vec3d_a = new Vec3d(0.000005F, -0.112555F, 1.40225F);
+//
+//            if (vec3d_a.squareDistanceTo(x, y, z) < 0.0001F)
+//            {
+//                Small.LOGGER.info("V " + v);
+//            }
+//        }
     }
 
     @Override
@@ -293,6 +315,12 @@ public class WildSandCat extends SkinningEntities
     }
 
     @Override
+    public DataParameter<Byte>[] getByteDataParameterArray()
+    {
+        return BYTE_DATAPARAMETER_ARRAY;
+    }
+
+    @Override
     public DataParameter<Integer>[] getIntegerDataParameterArray()
     {
         return INTEGER_DATAPARAMETER_ARRAY;
@@ -307,18 +335,18 @@ public class WildSandCat extends SkinningEntities
     @Override
     public Object createObjectRender()
     {
-        return new SandCatRender(this.bothentitiesmemory.bothdata, RenderHelper.DATALOADER, this);
+        return new SandCatRender(new EntitiesRenderMemory(), this.bothentitiesmemory.bothdata, RenderHelper.DATALOADER, this);
     }
 
     @Override
-    public ClientEntitiesMemory createClientEntitiesMemory(BothData bothdata, WorkBytes workbytes)
+    public void createClientEntitiesMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
-        return new ClientSandCatMemory(bothdata, workbytes);
+        new ClientSandCatMemory(skinningentities, bothdata, workbytes);
     }
 
     @Override
-    public ServerEntitiesMemory createServerEntitiesMemory(BothData bothdata, WorkBytes workbytes)
+    public void createServerEntitiesMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
-        return new ServerSandCatMemory(bothdata, workbytes);
+        new ServerSandCatMemory(skinningentities, bothdata, workbytes);
     }
 }

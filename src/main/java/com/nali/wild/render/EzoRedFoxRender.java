@@ -1,6 +1,7 @@
 package com.nali.wild.render;
 
 import com.nali.data.BothData;
+import com.nali.render.EntitiesRenderMemory;
 import com.nali.small.render.SkinningEntitiesRender;
 import com.nali.system.DataLoader;
 import net.minecraft.entity.Entity;
@@ -10,9 +11,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class EzoRedFoxRender extends SkinningEntitiesRender
 {
-    public EzoRedFoxRender(BothData bothdata, DataLoader dataloader, Entity entity)
+    public EzoRedFoxRender(EntitiesRenderMemory entitiesrendermemory, BothData bothdata, DataLoader dataloader, Entity entity)
     {
-        super(bothdata, dataloader, entity);
+        super(entitiesrendermemory, bothdata, dataloader, entity);
         this.texture_index_int_array[0] = 0;
         this.texture_index_int_array[1] = 0;
         this.texture_index_int_array[2] = 1;

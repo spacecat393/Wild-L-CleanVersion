@@ -17,8 +17,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.function.Supplier;
@@ -127,24 +125,24 @@ public class WildEzoRedFox extends SkinningEntities
         skinningrender.model_boolean_array[7] = false;
     }
 
-    @Override
-    public AxisAlignedBB getMouthAxisAlignedBB()
-    {
-        if (this.isZeroMove())
-        {
-            return this.getEntityBoundingBox().grow(0.25);
-        }
-        else
-        {
-            double hw = this.width / 2.0F;
-            double hh = 0.5;
-            Vec3d view_vec3d = this.getLookVec().scale(0.25);
-            double x = this.posX + view_vec3d.x;
-            double y = this.posY + (double)(this.height / 1.5F) + view_vec3d.y;
-            double z = this.posZ + view_vec3d.z;
-            return new AxisAlignedBB(x - hw, y, z - hw, x + hw, y + hh, z + hw);
-        }
-    }
+//    @Override
+//    public AxisAlignedBB getMouthAxisAlignedBB()
+//    {
+//        if (this.isZeroMove())
+//        {
+//            return this.getEntityBoundingBox().grow(0.25);
+//        }
+//        else
+//        {
+//            double hw = this.width / 2.0F;
+//            double hh = 0.5;
+//            Vec3d view_vec3d = this.getLookVec().scale(0.25);
+//            double x = this.posX + view_vec3d.x;
+//            double y = this.posY + (double)(this.height / 1.5F) + view_vec3d.y;
+//            double z = this.posZ + view_vec3d.z;
+//            return new AxisAlignedBB(x - hw, y, z - hw, x + hw, y + hh, z + hw);
+//        }
+//    }
 
     @Override
     public BothData createBothData()
@@ -269,6 +267,12 @@ public class WildEzoRedFox extends SkinningEntities
     public Object createObjectRender()
     {
         return new EzoRedFoxRender(new EntitiesRenderMemory(), this.bothentitiesmemory.bothdata, RenderHelper.DATALOADER, this);
+    }
+
+    @Override
+    public int[] getIVIntArray()
+    {
+        return ClientEzoRedFoxMemory.IV_INT_ARRAY;
     }
 
     @Override

@@ -87,14 +87,14 @@ public class WildEzoRedFox extends SkinningEntities
 
         if (this.ticksExisted % 100 == 0)
         {
-            skinningrender.model_boolean_array[8] = false;
-            skinningrender.model_boolean_array[9] = true;
+            skinningrender.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
+            skinningrender.model_byte_array[9 / 8] |= 2;//Math.pow(2, 9 % 8)
             cliententitiesmemory.eyes_tick = 20;
         }
         else if (--cliententitiesmemory.eyes_tick <= 0)
         {
-            skinningrender.model_boolean_array[8] = true;
-            skinningrender.model_boolean_array[9] = false;
+            skinningrender.model_byte_array[8 / 8] |= 1;//Math.pow(2, 8 % 8)
+            skinningrender.model_byte_array[9 / 8] &= 253;//255 - Math.pow(2, 9 % 8)
         }
 
         float scale = skinningrender.entitiesrendermemory.scale;
@@ -109,9 +109,10 @@ public class WildEzoRedFox extends SkinningEntities
             this.height = bothdata.Height() * scale;
         }
 
-        skinningrender.model_boolean_array[5] = false;
-        skinningrender.model_boolean_array[6] = false;
-        skinningrender.model_boolean_array[7] = false;
+//        skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
+//        skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
+//        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+        skinningrender.model_byte_array[0] &= 223 & 191 & 127;
     }
 
     @Override
@@ -119,10 +120,11 @@ public class WildEzoRedFox extends SkinningEntities
     {
         ClientEntitiesMemory cliententitiesmemory = (ClientEntitiesMemory)this.bothentitiesmemory;
         SkinningRender skinningrender = (SkinningRender)cliententitiesmemory.objectrender;
-        skinningrender.model_boolean_array[8] = false;
-        skinningrender.model_boolean_array[5] = false;
-        skinningrender.model_boolean_array[6] = false;
-        skinningrender.model_boolean_array[7] = false;
+        skinningrender.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
+//        skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
+//        skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
+//        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+        skinningrender.model_byte_array[0] &= 223 & 191 & 127;
     }
 
 //    @Override
@@ -182,9 +184,9 @@ public class WildEzoRedFox extends SkinningEntities
             () -> serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopInSet(3, 5) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
             () -> this.isZeroMove() && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoop(3),
 
-            () -> serverentitiesmemory.current_work_byte_array[workbytes.SIT()] == 1 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoopInSet(6, 7),
+            () -> (serverentitiesmemory.current_work_byte_array[workbytes.SIT() / 8] >> workbytes.SIT() % 8 & 1) == 1 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoopInSet(6, 7),
             () -> serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopInSet(6, 8) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
-            () -> serverentitiesmemory.current_work_byte_array[workbytes.SIT()] == 1 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoop(6),
+            () -> (serverentitiesmemory.current_work_byte_array[workbytes.SIT() / 8] >> workbytes.SIT() % 8 & 1) == 1 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoop(6),
 
             () -> !(serverentitiesmemory.entitiesaimemory.skinningentitiesattack.state == 0 || serverentitiesmemory.entitiesaimemory.skinningentitiesattack.state == 1) && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopOffSet(14, 14) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
             () -> !(serverentitiesmemory.entitiesaimemory.skinningentitiesattack.state == 0 || serverentitiesmemory.entitiesaimemory.skinningentitiesattack.state == 1) && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopOffSet(15, 15) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
@@ -230,7 +232,7 @@ public class WildEzoRedFox extends SkinningEntities
                 return result;
             },
 
-            () -> serverentitiesmemory.main_work_byte_array[workbytes.ATTACK()] == 1 && this.moveForward != 0 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoop(13),
+            () -> (serverentitiesmemory.main_work_byte_array[workbytes.ATTACK() / 8] >> workbytes.ATTACK() % 8 & 1) == 1 && this.moveForward != 0 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoop(13),
 
             () -> this.moveForward != 0 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoopInSet(0, 1),
             () -> serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopInSet(0, 2),

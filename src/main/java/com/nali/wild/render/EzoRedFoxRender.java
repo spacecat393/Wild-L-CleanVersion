@@ -29,11 +29,11 @@ public class EzoRedFoxRender extends SkinningEntitiesRender
         this.texture_index_int_array[12] = 3;
     }
 
-    @Override
-    public void setGlow()
-    {
-        this.glow_boolean_array[6] = true;
-        this.glow_boolean_array[7] = true;
-        super.setGlow();
-    }
+//    @Override
+//    public void setGlow()
+//    {
+//        this.glow_byte_array[6 / 8] = true;
+//        this.glow_byte_array[7 / 8] = true;
+//        super.setGlow();
+//    }
 }

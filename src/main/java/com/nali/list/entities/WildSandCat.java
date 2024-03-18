@@ -92,14 +92,14 @@ public class WildSandCat extends SkinningEntities
 
         if (this.ticksExisted % 100 == 0)
         {
-            skinningrender.model_boolean_array[4] = false;
-            skinningrender.model_boolean_array[3] = true;
+            skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
+            skinningrender.model_byte_array[3 / 8] |= 8;//Math.pow(2, 3 % 8)
             cliententitiesmemory.eyes_tick = 20;
         }
         else if (--cliententitiesmemory.eyes_tick <= 0)
         {
-            skinningrender.model_boolean_array[4] = true;
-            skinningrender.model_boolean_array[3] = false;
+            skinningrender.model_byte_array[4 / 8] |= 16;//Math.pow(2, 4 % 8)
+            skinningrender.model_byte_array[3 / 8] &= 247;//255 - Math.pow(2, 3 % 8)
         }
 
         float scale = skinningrender.entitiesrendermemory.scale;
@@ -119,9 +119,10 @@ public class WildSandCat extends SkinningEntities
             this.height = bothdata.Height() * scale;
         }
 
-        skinningrender.model_boolean_array[7] = false;
-        skinningrender.model_boolean_array[10] = false;
-        skinningrender.model_boolean_array[11] = false;
+        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+//        skinningrender.model_byte_array[10 / 8] &= 251;//255 - Math.pow(2, 10 % 8)
+//        skinningrender.model_byte_array[11 / 8] &= 247;//255 - Math.pow(2, 11 % 8)
+        skinningrender.model_byte_array[1] &= 251 & 247;
 
 //        OpenGLSkinningMemory openglskinningmemory = (OpenGLSkinningMemory)cliententitiesmemory.objectrender.memory_object_array[2];
 //        for (int v = 0; v < openglskinningmemory.index_int_array.length; ++v)
@@ -145,10 +146,13 @@ public class WildSandCat extends SkinningEntities
     {
         ClientEntitiesMemory cliententitiesmemory = (ClientEntitiesMemory)this.bothentitiesmemory;
         SkinningRender skinningrender = (SkinningRender)cliententitiesmemory.objectrender;
-        skinningrender.model_boolean_array[4] = false;
-        skinningrender.model_boolean_array[7] = false;
-        skinningrender.model_boolean_array[10] = false;
-        skinningrender.model_boolean_array[11] = false;
+//        skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
+//        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+        skinningrender.model_byte_array[0] &= 239 & 127;
+//        skinningrender.model_byte_array[10 / 8] &= 251;//255 - Math.pow(2, 10 % 8)
+//        skinningrender.model_byte_array[11 / 8] &= 247;//255 - Math.pow(2, 11 % 8)
+        skinningrender.model_byte_array[1] &= 251 & 247;
+
     }
 
 //    @Override
@@ -208,9 +212,9 @@ public class WildSandCat extends SkinningEntities
             () -> serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopInSet(3, 5) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
             () -> this.isZeroMove() && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoop(3),
 
-            () -> serverentitiesmemory.current_work_byte_array[workbytes.SIT()] == 1 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoopInSet(6, 7),
+            () -> (serverentitiesmemory.current_work_byte_array[workbytes.SIT() / 8] >> workbytes.SIT() % 8 & 1) == 1 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoopInSet(6, 7),
             () -> serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopInSet(6, 8) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
-            () -> serverentitiesmemory.current_work_byte_array[workbytes.SIT()] == 1 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoop(6),
+            () -> (serverentitiesmemory.current_work_byte_array[workbytes.SIT() / 8] >> workbytes.SIT() % 8 & 1) == 1 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoop(6),
 
             () -> !(serverentitiesmemory.entitiesaimemory.skinningentitiesattack.state == 0 || serverentitiesmemory.entitiesaimemory.skinningentitiesattack.state == 1) && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopOffSet(14, 14) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
             () -> !(serverentitiesmemory.entitiesaimemory.skinningentitiesattack.state == 0 || serverentitiesmemory.entitiesaimemory.skinningentitiesattack.state == 1) && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopOffSet(15, 15) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
@@ -256,7 +260,7 @@ public class WildSandCat extends SkinningEntities
                 return result;
             },
 
-            () -> serverentitiesmemory.main_work_byte_array[workbytes.ATTACK()] == 1 && this.moveForward != 0 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoop(1),
+            () -> (serverentitiesmemory.main_work_byte_array[workbytes.ATTACK() / 8] >> workbytes.ATTACK() % 8 & 1) == 1 && this.moveForward != 0 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoop(1),
             () -> this.moveForward != 0 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoop(0),
 
             () -> (serverentitiesmemory.statentitiesmemory.stat & 4) == 4 && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopFree(9, (byte)4),

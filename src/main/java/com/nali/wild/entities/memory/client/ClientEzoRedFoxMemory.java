@@ -12,12 +12,12 @@ public class ClientEzoRedFoxMemory extends ClientEntitiesMemory
     @SideOnly(Side.CLIENT)
     public static int[] IV_INT_ARRAY = new int[]
     {
-        2, 8760,
-        2, 10195,
-        4, 1525,
-        2, 5390,
-        2, 14181,
-        11, 961
+        2+1, 8760,
+        2+1, 10195,
+        4+1, 1525,
+        2+1, 5390,
+        2+1, 14181,
+        11+1, 961
     };
     @SideOnly(Side.CLIENT)
     public static float[] ROTATION_FLOAT_ARRAY = new float[]

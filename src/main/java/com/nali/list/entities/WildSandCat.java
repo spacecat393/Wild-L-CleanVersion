@@ -1,6 +1,7 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
+import com.nali.list.render.SandCatRender;
 import com.nali.render.EntitiesRenderMemory;
 import com.nali.render.SkinningRender;
 import com.nali.small.entities.bytes.WorkBytes;
@@ -11,8 +12,6 @@ import com.nali.wild.data.SandCatData;
 import com.nali.wild.entities.bytes.SandCatBytes;
 import com.nali.wild.entities.memory.client.ClientSandCatMemory;
 import com.nali.wild.entities.memory.server.ServerSandCatMemory;
-import com.nali.wild.render.RenderHelper;
-import com.nali.wild.render.SandCatRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -25,6 +24,10 @@ public class WildSandCat extends SkinningEntities
 {
     public static int eggPrimary = 0xffebc7;
     public static int eggSecondary = 0x614c41;
+
+    public static BothData BOTHDATA = new SandCatData();
+    public static WorkBytes WORKBYTES = new SandCatBytes();
+
     public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[SandCatData.MAX_SYNC];
     public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[SandCatData.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
@@ -177,13 +180,13 @@ public class WildSandCat extends SkinningEntities
     @Override
     public BothData createBothData()
     {
-        return new SandCatData();
+        return BOTHDATA;
     }
 
     @Override
     public WorkBytes createWorkBytes()
     {
-        return new SandCatBytes();
+        return WORKBYTES;
     }
 
     @Override
@@ -337,7 +340,7 @@ public class WildSandCat extends SkinningEntities
     @Override
     public Object createObjectRender()
     {
-        return new SandCatRender(new EntitiesRenderMemory(), this.bothentitiesmemory.bothdata, RenderHelper.DATALOADER, this);
+        return new SandCatRender(new EntitiesRenderMemory(), this);
     }
 
     @Override

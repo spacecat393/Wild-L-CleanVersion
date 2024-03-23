@@ -10,13 +10,13 @@ public class SandCatData implements BothData
     @Override
     public int MaxPart()
     {
-        return 13;
+        return 13+1;
     }
 
     @Override
     public int StepModels()
     {
-        return 15;
+        return 15-1;
     }
 
     @Override

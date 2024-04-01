@@ -5,19 +5,21 @@ import com.nali.list.render.EzoRedFoxRender;
 import com.nali.render.EntitiesRenderMemory;
 import com.nali.render.SkinningRender;
 import com.nali.small.entities.bytes.WorkBytes;
-import com.nali.small.entities.memory.ClientEntitiesMemory;
+import com.nali.small.entities.memory.client.ClientEntitiesMemory;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
+import com.nali.small.entities.sounds.Sounds;
 import com.nali.wild.data.EzoRedFoxData;
 import com.nali.wild.entities.bytes.EzoRedFoxBytes;
 import com.nali.wild.entities.memory.client.ClientEzoRedFoxMemory;
 import com.nali.wild.entities.memory.server.ServerEzoRedFoxMemory;
+import com.nali.wild.entities.sounds.EzoRedFoxSounds;
+import com.nali.wild.render.WildSoundRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
-
 import java.util.function.Supplier;
 
 public class WildEzoRedFox extends SkinningEntities
@@ -27,6 +29,7 @@ public class WildEzoRedFox extends SkinningEntities
 
     public static BothData BOTHDATA = new EzoRedFoxData();
     public static WorkBytes WORKBYTES = new EzoRedFoxBytes();
+    public static Sounds SOUNDS = new EzoRedFoxSounds();
 
     public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxData.MAX_SYNC];
     public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxData.MAX_FRAME];
@@ -272,6 +275,18 @@ public class WildEzoRedFox extends SkinningEntities
     public Object createObjectRender()
     {
         return new EzoRedFoxRender(new EntitiesRenderMemory(), this);
+    }
+
+    @Override
+    public Sounds createSounds()
+    {
+        return SOUNDS;
+    }
+
+    @Override
+    public Object createSoundRender()
+    {
+        return new WildSoundRender();
     }
 
     @Override

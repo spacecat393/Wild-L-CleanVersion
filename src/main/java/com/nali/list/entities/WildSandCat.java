@@ -4,6 +4,7 @@ import com.nali.data.BothData;
 import com.nali.list.render.SandCatRender;
 import com.nali.render.EntitiesRenderMemory;
 import com.nali.render.SkinningRender;
+import com.nali.render.SoundRender;
 import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.memory.client.ClientEntitiesMemory;
 import com.nali.small.entities.skinning.SkinningEntities;
@@ -14,7 +15,6 @@ import com.nali.wild.entities.bytes.SandCatBytes;
 import com.nali.wild.entities.memory.client.ClientSandCatMemory;
 import com.nali.wild.entities.memory.server.ServerSandCatMemory;
 import com.nali.wild.entities.sounds.SandCatSounds;
-import com.nali.wild.render.WildSoundRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -24,6 +24,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.function.Supplier;
+
+import static com.nali.wild.render.RenderHelper.DATALOADER;
 
 public class WildSandCat extends SkinningEntities
 {
@@ -213,7 +215,7 @@ public class WildSandCat extends SkinningEntities
         serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array = new SkinningEntitiesLiveFrame[1];
 
         serverentitiesmemory.entitiesaimemory.skinningentitiesattack.attack_frame_int_array = ATTACK_FRAME_INT_ARRAY;
-//        serverentitiesmemory.entitiesaimemory.skinningentitiesattack.minimum_distance = 0.5D;
+        serverentitiesmemory.entitiesaimemory.skinningentitiesattack.minimum_distance = 1.0F;
 
         serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0] = new SkinningEntitiesLiveFrame(this, 0, FRAME_INT_2D_ARRAY);
         serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].condition_boolean_supplier_array = new Supplier[]
@@ -236,11 +238,11 @@ public class WildSandCat extends SkinningEntities
                     serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].step = 1;
 
                     int id = 14;
-                    serverentitiesmemory.entitiesaimemory.skinningentitiesattack.minimum_distance = 0.5D;
+//                    serverentitiesmemory.entitiesaimemory.skinningentitiesattack.minimum_distance = 0.5F;
                     if (serverentitiesmemory.how_attack)
                     {
                         id = 15;
-                        serverentitiesmemory.entitiesaimemory.skinningentitiesattack.minimum_distance = 1.0D;
+//                        serverentitiesmemory.entitiesaimemory.skinningentitiesattack.minimum_distance = 1.0F;
                     }
 
                     if (serverentitiesmemory.frame_int_array[serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].integer_index] < serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].int_2d_array[id][0] || serverentitiesmemory.frame_int_array[serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].integer_index] >= serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].int_2d_array[id][1])
@@ -317,8 +319,6 @@ public class WildSandCat extends SkinningEntities
             },
             () -> serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoop(12)
         };
-
-        serverentitiesmemory.entitiesaimemory.skinningentitiesattack.minimum_distance = 48.0F;
     }
 
     @Override
@@ -354,7 +354,7 @@ public class WildSandCat extends SkinningEntities
     @Override
     public Object createSoundRender()
     {
-        return new WildSoundRender();
+        return SoundRender.getSoundRender(DATALOADER);
     }
 
     @Override

@@ -1,25 +1,27 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
-import com.nali.list.render.EzoRedFoxRender;
 import com.nali.render.EntitiesRenderMemory;
-import com.nali.render.SkinningRender;
 import com.nali.render.SoundRender;
 import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.memory.client.ClientEntitiesMemory;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.small.entities.sounds.Sounds;
-import com.nali.wild.data.EzoRedFoxData;
+import com.nali.wild.data.both.EzoRedFoxBothData;
 import com.nali.wild.entities.bytes.EzoRedFoxBytes;
 import com.nali.wild.entities.memory.client.ClientEzoRedFoxMemory;
 import com.nali.wild.entities.memory.server.ServerEzoRedFoxMemory;
 import com.nali.wild.entities.sounds.EzoRedFoxSounds;
+import com.nali.wild.render.skinning.EzoRedFoxRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import java.util.function.Supplier;
 
 import static com.nali.wild.render.RenderHelper.DATALOADER;
@@ -29,12 +31,12 @@ public class WildEzoRedFox extends SkinningEntities
     public static int eggPrimary = 0xffb56d;
     public static int eggSecondary = 0xc9453d;
 
-    public static BothData BOTHDATA = new EzoRedFoxData();
+    public static BothData BOTHDATA = new EzoRedFoxBothData();
     public static WorkBytes WORKBYTES = new EzoRedFoxBytes();
     public static Sounds SOUNDS = new EzoRedFoxSounds();
 
-    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxData.MAX_SYNC];
-    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxData.MAX_FRAME];
+    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxBothData.MAX_SYNC];
+    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxBothData.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 
     public static int[] ATTACK_FRAME_INT_ARRAY = new int[]
@@ -86,10 +88,11 @@ public class WildEzoRedFox extends SkinningEntities
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void updateClient()
     {
         ClientEzoRedFoxMemory cliententitiesmemory = (ClientEzoRedFoxMemory)this.bothentitiesmemory;
-        SkinningRender skinningrender = (SkinningRender)cliententitiesmemory.objectrender;
+        EzoRedFoxRender skinningrender = (EzoRedFoxRender)cliententitiesmemory.objectrender;
         BothData bothdata = cliententitiesmemory.bothdata;
         int frame = skinningrender.frame_int_array[0];
 
@@ -124,10 +127,11 @@ public class WildEzoRedFox extends SkinningEntities
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void initFakeFrame()
     {
         ClientEntitiesMemory cliententitiesmemory = (ClientEntitiesMemory)this.bothentitiesmemory;
-        SkinningRender skinningrender = (SkinningRender)cliententitiesmemory.objectrender;
+        EzoRedFoxRender skinningrender = (EzoRedFoxRender)cliententitiesmemory.objectrender;
         skinningrender.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
 //        skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
 //        skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
@@ -272,6 +276,7 @@ public class WildEzoRedFox extends SkinningEntities
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public Object createObjectRender()
     {
         return new EzoRedFoxRender(new EntitiesRenderMemory(), this);
@@ -284,18 +289,21 @@ public class WildEzoRedFox extends SkinningEntities
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public Object createSoundRender()
     {
         return SoundRender.getSoundRender(DATALOADER);
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public int[] getIVIntArray()
     {
         return ClientEzoRedFoxMemory.IV_INT_ARRAY;
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void createClientEntitiesMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
         new ClientEzoRedFoxMemory(skinningentities, bothdata, workbytes);

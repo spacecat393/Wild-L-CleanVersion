@@ -12,12 +12,12 @@ public class ClientSandCatMemory extends ClientEntitiesMemory
     @SideOnly(Side.CLIENT)
     public static int[] IV_INT_ARRAY = new int[]
     {
-        8+1, 25349,
-        8+1, 22457,
-        6+1, 906,
-        8+1, 14975,
-        8+1, 7196,
-        2+1, 572
+        8+15, 25349,
+        8+15, 22457,
+        6+15, 906,
+        8+15, 14975,
+        8+15, 7196,
+        2+15, 572
     };
     @SideOnly(Side.CLIENT)
     public static float[] ROTATION_FLOAT_ARRAY = new float[]

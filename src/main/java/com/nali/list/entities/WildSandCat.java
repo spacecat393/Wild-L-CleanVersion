@@ -1,20 +1,19 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
-import com.nali.list.render.SandCatRender;
 import com.nali.render.EntitiesRenderMemory;
-import com.nali.render.SkinningRender;
 import com.nali.render.SoundRender;
 import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.memory.client.ClientEntitiesMemory;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.small.entities.sounds.Sounds;
-import com.nali.wild.data.SandCatData;
+import com.nali.wild.data.both.SandCatBothData;
 import com.nali.wild.entities.bytes.SandCatBytes;
 import com.nali.wild.entities.memory.client.ClientSandCatMemory;
 import com.nali.wild.entities.memory.server.ServerSandCatMemory;
 import com.nali.wild.entities.sounds.SandCatSounds;
+import com.nali.wild.render.skinning.SandCatRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -32,13 +31,12 @@ public class WildSandCat extends SkinningEntities
     public static int eggPrimary = 0xffebc7;
     public static int eggSecondary = 0x614c41;
 
-    public static BothData BOTHDATA = new SandCatData();
+    public static BothData BOTHDATA = new SandCatBothData();
     public static WorkBytes WORKBYTES = new SandCatBytes();
-    @SideOnly(Side.CLIENT)
     public static Sounds SOUNDS = new SandCatSounds();
 
-    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[SandCatData.MAX_SYNC];
-    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[SandCatData.MAX_FRAME];
+    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[SandCatBothData.MAX_SYNC];
+    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[SandCatBothData.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 
     public static int[] ATTACK_FRAME_INT_ARRAY = new int[]
@@ -95,10 +93,11 @@ public class WildSandCat extends SkinningEntities
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void updateClient()
     {
         ClientSandCatMemory cliententitiesmemory = (ClientSandCatMemory)this.bothentitiesmemory;
-        SkinningRender skinningrender = (SkinningRender)cliententitiesmemory.objectrender;
+        SandCatRender skinningrender = (SandCatRender)cliententitiesmemory.objectrender;
         BothData bothdata = cliententitiesmemory.bothdata;
         int frame = skinningrender.frame_int_array[0];
 
@@ -154,10 +153,11 @@ public class WildSandCat extends SkinningEntities
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void initFakeFrame()
     {
         ClientEntitiesMemory cliententitiesmemory = (ClientEntitiesMemory)this.bothentitiesmemory;
-        SkinningRender skinningrender = (SkinningRender)cliententitiesmemory.objectrender;
+        SandCatRender skinningrender = (SandCatRender)cliententitiesmemory.objectrender;
 //        skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
 //        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
         skinningrender.model_byte_array[0] &= 239 & 127;
@@ -340,6 +340,7 @@ public class WildSandCat extends SkinningEntities
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public Object createObjectRender()
     {
         return new SandCatRender(new EntitiesRenderMemory(), this);
@@ -352,18 +353,21 @@ public class WildSandCat extends SkinningEntities
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public Object createSoundRender()
     {
         return SoundRender.getSoundRender(DATALOADER);
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public int[] getIVIntArray()
     {
         return ClientSandCatMemory.IV_INT_ARRAY;
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void createClientEntitiesMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
         new ClientSandCatMemory(skinningentities, bothdata, workbytes);

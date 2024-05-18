@@ -7,17 +7,19 @@ import com.nali.small.entities.skinning.SkinningEntities;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static com.nali.list.data.WildData.MODEL_STEP;
+
 public class ClientEzoRedFoxMemory extends ClientEntitiesMemory
 {
     @SideOnly(Side.CLIENT)
     public static int[] IV_INT_ARRAY = new int[]
     {
-        2+1, 8760,
-        2+1, 10195,
-        4+1, 1525,
-        2+1, 5390,
-        2+1, 14181,
-        11+1, 961
+        2+1 + MODEL_STEP, 8760,
+        2+1 + MODEL_STEP, 10195,
+        4+1 + MODEL_STEP, 1525,
+        2+1 + MODEL_STEP, 5390,
+        2+1 + MODEL_STEP, 14181,
+        11+1 + MODEL_STEP, 961
     };
     @SideOnly(Side.CLIENT)
     public static float[] ROTATION_FLOAT_ARRAY = new float[]

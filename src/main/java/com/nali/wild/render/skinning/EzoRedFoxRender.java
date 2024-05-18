@@ -3,9 +3,7 @@ package com.nali.wild.render.skinning;
 import com.nali.data.client.ClientData;
 import com.nali.list.entities.WildEzoRedFox;
 import com.nali.render.EntitiesRenderMemory;
-import com.nali.small.render.SkinningEntitiesRender;
 import com.nali.wild.data.client.EzoRedFoxClientData;
-import com.nali.wild.render.RenderHelper;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -13,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
-public class EzoRedFoxRender extends SkinningEntitiesRender
+public class EzoRedFoxRender extends WildSkinningEntitiesRender
 {
 //    public static int ID;
 //    public static DataLoader DATALOADER = RenderHelper.DATALOADER;
@@ -23,7 +21,7 @@ public class EzoRedFoxRender extends SkinningEntitiesRender
 
     public EzoRedFoxRender(EntitiesRenderMemory entitiesrendermemory, Entity entity)
     {
-        super(entitiesrendermemory, WildEzoRedFox.BOTHDATA, CLIENTDATA, RenderHelper.DATALOADER, entity);
+        super(entitiesrendermemory, WildEzoRedFox.BOTHDATA, CLIENTDATA/*, RenderHelper.DATALOADER*/, entity);
         this.model_byte_array = new byte[(int)Math.ceil((CLIENTDATA.EndPart() - CLIENTDATA.StartPart()) / 8.0D)];
 //        this.texture_index_int_array[0] = 0;
 //        this.texture_index_int_array[1] = 0;

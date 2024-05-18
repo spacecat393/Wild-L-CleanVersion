@@ -2,23 +2,25 @@ package com.nali.wild.data.client;
 
 import com.nali.data.client.SkinningClientData;
 
+import static com.nali.list.data.WildData.MODEL_STEP;
+
 public class SandCatClientData implements SkinningClientData
 {
     @Override
     public int AnimationID()
     {
-        return 14;
+        return MODEL_STEP + 14;
     }
 
     @Override
     public int StartPart()
     {
-        return 15;
+        return MODEL_STEP + 15;
     }
 
     @Override
     public int EndPart()
     {
-        return 28;
+        return MODEL_STEP + 28;
     }
 }

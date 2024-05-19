@@ -13,7 +13,7 @@ import com.nali.wild.entities.bytes.EzoRedFoxBytes;
 import com.nali.wild.entities.memory.client.ClientEzoRedFoxMemory;
 import com.nali.wild.entities.memory.server.ServerEzoRedFoxMemory;
 import com.nali.wild.entities.sounds.EzoRedFoxSounds;
-import com.nali.wild.render.skinning.EzoRedFoxRender;
+import com.nali.list.render.EzoRedFoxRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;

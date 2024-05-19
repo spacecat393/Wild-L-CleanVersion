@@ -13,7 +13,7 @@ import com.nali.wild.entities.bytes.SandCatBytes;
 import com.nali.wild.entities.memory.client.ClientSandCatMemory;
 import com.nali.wild.entities.memory.server.ServerSandCatMemory;
 import com.nali.wild.entities.sounds.SandCatSounds;
-import com.nali.wild.render.skinning.SandCatRender;
+import com.nali.list.render.SandCatRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;

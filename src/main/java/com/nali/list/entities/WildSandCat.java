@@ -1,10 +1,8 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
-import com.nali.render.EntitiesRenderMemory;
-import com.nali.render.NoSoundRender;
+import com.nali.list.render.SandCatRender;
 import com.nali.small.entities.bytes.WorkBytes;
-import com.nali.small.entities.memory.client.ClientEntitiesMemory;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.small.entities.sounds.Sounds;
@@ -13,7 +11,6 @@ import com.nali.wild.entities.bytes.SandCatBytes;
 import com.nali.wild.entities.memory.client.ClientSandCatMemory;
 import com.nali.wild.entities.memory.server.ServerSandCatMemory;
 import com.nali.wild.entities.sounds.SandCatSounds;
-import com.nali.list.render.SandCatRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -150,20 +147,19 @@ public class WildSandCat extends SkinningEntities
 //        }
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void initFakeFrame()
-    {
-        ClientEntitiesMemory cliententitiesmemory = (ClientEntitiesMemory)this.bothentitiesmemory;
-        SandCatRender skinningrender = (SandCatRender)cliententitiesmemory.objectrender;
-//        skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
-//        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
-        skinningrender.model_byte_array[0] &= 239 & 127;
-//        skinningrender.model_byte_array[10 / 8] &= 251;//255 - Math.pow(2, 10 % 8)
-//        skinningrender.model_byte_array[11 / 8] &= 247;//255 - Math.pow(2, 11 % 8)
-        skinningrender.model_byte_array[1] &= 251 & 247;
-
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public void initFakeFrame()
+//    {
+//        ClientEntitiesMemory cliententitiesmemory = (ClientEntitiesMemory)this.bothentitiesmemory;
+//        SandCatRender skinningrender = (SandCatRender)cliententitiesmemory.objectrender;
+////        skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
+////        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+//        skinningrender.model_byte_array[0] &= 239 & 127;
+////        skinningrender.model_byte_array[10 / 8] &= 251;//255 - Math.pow(2, 10 % 8)
+////        skinningrender.model_byte_array[11 / 8] &= 247;//255 - Math.pow(2, 11 % 8)
+//        skinningrender.model_byte_array[1] &= 251 & 247;
+//    }
 
 //    @Override
 //    public AxisAlignedBB getMouthAxisAlignedBB()
@@ -337,12 +333,12 @@ public class WildSandCat extends SkinningEntities
         return FLOAT_DATAPARAMETER_ARRAY;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Object createObjectRender()
-    {
-        return new SandCatRender(new EntitiesRenderMemory(), this);
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public Object createObjectRender()
+//    {
+//        return new SandCatRender(new EntitiesRenderMemory(), this);
+//    }
 
     @Override
     public Sounds createSounds()
@@ -350,20 +346,20 @@ public class WildSandCat extends SkinningEntities
         return SOUNDS;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Object createSoundRender()
-    {
-//        return SoundRender.getSoundRender(DATALOADER);
-        return new NoSoundRender();
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int[] getIVIntArray()
-    {
-        return ClientSandCatMemory.IV_INT_ARRAY;
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public Object createSoundRender()
+//    {
+////        return SoundRender.getSoundRender(DATALOADER);
+//        return new NoSoundRender();
+//    }
+//
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public int[] getIVIntArray()
+//    {
+//        return ClientSandCatMemory.IV_INT_ARRAY;
+//    }
 
     @Override
     @SideOnly(Side.CLIENT)

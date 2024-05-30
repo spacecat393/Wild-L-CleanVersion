@@ -1,10 +1,8 @@
 package com.nali.list.entities;
 
 import com.nali.data.BothData;
-import com.nali.render.EntitiesRenderMemory;
-import com.nali.render.NoSoundRender;
+import com.nali.list.render.EzoRedFoxRender;
 import com.nali.small.entities.bytes.WorkBytes;
-import com.nali.small.entities.memory.client.ClientEntitiesMemory;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.small.entities.sounds.Sounds;
@@ -13,7 +11,6 @@ import com.nali.wild.entities.bytes.EzoRedFoxBytes;
 import com.nali.wild.entities.memory.client.ClientEzoRedFoxMemory;
 import com.nali.wild.entities.memory.server.ServerEzoRedFoxMemory;
 import com.nali.wild.entities.sounds.EzoRedFoxSounds;
-import com.nali.list.render.EzoRedFoxRender;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -124,18 +121,18 @@ public class WildEzoRedFox extends SkinningEntities
         skinningrender.model_byte_array[0] &= 223 & 191 & 127;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void initFakeFrame()
-    {
-        ClientEntitiesMemory cliententitiesmemory = (ClientEntitiesMemory)this.bothentitiesmemory;
-        EzoRedFoxRender skinningrender = (EzoRedFoxRender)cliententitiesmemory.objectrender;
-        skinningrender.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
-//        skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
-//        skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
-//        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
-        skinningrender.model_byte_array[0] &= 223 & 191 & 127;
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public void initFakeFrame()
+//    {
+//        ClientEntitiesMemory cliententitiesmemory = (ClientEntitiesMemory)this.bothentitiesmemory;
+//        EzoRedFoxRender skinningrender = (EzoRedFoxRender)cliententitiesmemory.objectrender;
+//        skinningrender.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
+////        skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
+////        skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
+////        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+//        skinningrender.model_byte_array[0] &= 223 & 191 & 127;
+//    }
 
 //    @Override
 //    public AxisAlignedBB getMouthAxisAlignedBB()
@@ -273,12 +270,12 @@ public class WildEzoRedFox extends SkinningEntities
         return FLOAT_DATAPARAMETER_ARRAY;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Object createObjectRender()
-    {
-        return new EzoRedFoxRender(new EntitiesRenderMemory(), this);
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public Object createObjectRender()
+//    {
+//        return new EzoRedFoxRender(new EntitiesRenderMemory(), this);
+//    }
 
     @Override
     public Sounds createSounds()
@@ -286,20 +283,20 @@ public class WildEzoRedFox extends SkinningEntities
         return SOUNDS;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Object createSoundRender()
-    {
-//        return SoundRender.getSoundRender(DATALOADER);
-        return new NoSoundRender();
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int[] getIVIntArray()
-    {
-        return ClientEzoRedFoxMemory.IV_INT_ARRAY;
-    }
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public Object createSoundRender()
+//    {
+////        return SoundRender.getSoundRender(DATALOADER);
+//        return new NoSoundRender();
+//    }
+//
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public int[] getIVIntArray()
+//    {
+//        return ClientEzoRedFoxMemory.IV_INT_ARRAY;
+//    }
 
     @Override
     @SideOnly(Side.CLIENT)

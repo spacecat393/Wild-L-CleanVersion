@@ -1,4 +1,4 @@
-package com.nali.list.entities;
+package com.nali.list.entity;
 
 import com.nali.data.BothData;
 import com.nali.list.render.SandCatRender;
@@ -6,7 +6,7 @@ import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.small.entities.sounds.Sounds;
-import com.nali.wild.data.both.SandCatBothData;
+import com.nali.wild.data.both.SandCatBothDa;
 import com.nali.wild.entities.bytes.SandCatBytes;
 import com.nali.wild.entities.memory.client.ClientSandCatMemory;
 import com.nali.wild.entities.memory.server.ServerSandCatMemory;
@@ -26,12 +26,12 @@ public class WildSandCat extends SkinningEntities
     public static int eggPrimary = 0xffebc7;
     public static int eggSecondary = 0x614c41;
 
-    public static BothData BOTHDATA = new SandCatBothData();
+    public static BothData BOTHDATA = new SandCatBothDa();
     public static WorkBytes WORKBYTES = new SandCatBytes();
     public static Sounds SOUNDS = new SandCatSounds();
 
-    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[SandCatBothData.MAX_SYNC];
-    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[SandCatBothData.MAX_FRAME];
+    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[SandCatBothDa.MAX_SYNC];
+    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[SandCatBothDa.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 
     public static int[] ATTACK_FRAME_INT_ARRAY = new int[]

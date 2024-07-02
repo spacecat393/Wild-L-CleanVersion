@@ -1,10 +1,13 @@
 package com.nali.wild.data.client;
 
 import com.nali.data.client.SkinningClientData;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static com.nali.list.data.WildData.MODEL_STEP;
 
-public class EzoRedFoxClientData implements SkinningClientData
+@SideOnly(Side.CLIENT)
+public class EzoRedFoxClientDa implements SkinningClientData
 {
     @Override
     public int AnimationID()

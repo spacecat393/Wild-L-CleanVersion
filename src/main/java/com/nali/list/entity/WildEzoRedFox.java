@@ -1,4 +1,4 @@
-package com.nali.list.entities;
+package com.nali.list.entity;
 
 import com.nali.data.BothData;
 import com.nali.list.render.EzoRedFoxRender;
@@ -6,7 +6,7 @@ import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.small.entities.sounds.Sounds;
-import com.nali.wild.data.both.EzoRedFoxBothData;
+import com.nali.wild.data.both.EzoRedFoxBothDa;
 import com.nali.wild.entities.bytes.EzoRedFoxBytes;
 import com.nali.wild.entities.memory.client.ClientEzoRedFoxMemory;
 import com.nali.wild.entities.memory.server.ServerEzoRedFoxMemory;
@@ -26,12 +26,12 @@ public class WildEzoRedFox extends SkinningEntities
     public static int eggPrimary = 0xffb56d;
     public static int eggSecondary = 0xc9453d;
 
-    public static BothData BOTHDATA = new EzoRedFoxBothData();
+    public static BothData BOTHDATA = new EzoRedFoxBothDa();
     public static WorkBytes WORKBYTES = new EzoRedFoxBytes();
     public static Sounds SOUNDS = new EzoRedFoxSounds();
 
-    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxBothData.MAX_SYNC];
-    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxBothData.MAX_FRAME];
+    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxBothDa.MAX_SYNC];
+    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxBothDa.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 
     public static int[] ATTACK_FRAME_INT_ARRAY = new int[]

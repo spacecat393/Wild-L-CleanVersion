@@ -1,8 +1,8 @@
-package com.nali.wild.entities.sounds;
+package com.nali.wild.entity.sounds;
 
 import com.nali.small.entities.sounds.Sounds;
 
-public class SandCatSounds implements Sounds
+public class SoundEzoRedFox implements Sounds
 {
     @Override
     public int HURT()

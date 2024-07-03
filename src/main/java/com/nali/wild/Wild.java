@@ -1,12 +1,13 @@
 package com.nali.wild;
 
-import com.nali.wild.system.Reference;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME)
+@Mod(modid = Wild.ID)
 public class Wild
 {
+    public final static String ID = "wild";
+
     @Instance
     public static Wild I;
 

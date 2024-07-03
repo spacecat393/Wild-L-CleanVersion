@@ -1,8 +1,8 @@
-package com.nali.wild.entities.bytes;
+package com.nali.wild.entity.bytes;
 
 import com.nali.small.entities.bytes.WorkBytes;
 
-public class SandCatBytes implements WorkBytes
+public class EzoRedFoxBytes implements WorkBytes
 {
     @Override
     public byte LOCK_INVENTORY()

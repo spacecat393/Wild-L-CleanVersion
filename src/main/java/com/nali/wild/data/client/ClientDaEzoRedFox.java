@@ -7,23 +7,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static com.nali.list.data.WildData.MODEL_STEP;
 
 @SideOnly(Side.CLIENT)
-public class SandCatClientDa implements SkinningClientData
+public class ClientDaEzoRedFox implements SkinningClientData
 {
     @Override
     public int AnimationID()
     {
-        return MODEL_STEP + 14;
+        return MODEL_STEP/* + 0*/;
     }
 
     @Override
     public int StartPart()
     {
-        return MODEL_STEP + 15;
+        return MODEL_STEP + 1;
     }
 
     @Override
     public int EndPart()
     {
-        return MODEL_STEP + 28;
+        return MODEL_STEP + 14;
     }
 }

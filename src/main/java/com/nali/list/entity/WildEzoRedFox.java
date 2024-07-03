@@ -6,11 +6,11 @@ import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.small.entities.sounds.Sounds;
-import com.nali.wild.data.both.EzoRedFoxBothDa;
-import com.nali.wild.entities.bytes.EzoRedFoxBytes;
-import com.nali.wild.entities.memory.client.ClientEzoRedFoxMemory;
-import com.nali.wild.entities.memory.server.ServerEzoRedFoxMemory;
-import com.nali.wild.entities.sounds.EzoRedFoxSounds;
+import com.nali.wild.data.both.BothDaEzoRedFox;
+import com.nali.wild.entity.bytes.EzoRedFoxBytes;
+import com.nali.wild.entity.memory.client.ClientEzoRedFox;
+import com.nali.wild.entity.memory.server.ServerEzoRedFox;
+import com.nali.wild.entity.sounds.SoundEzoRedFox;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -26,12 +26,12 @@ public class WildEzoRedFox extends SkinningEntities
     public static int eggPrimary = 0xffb56d;
     public static int eggSecondary = 0xc9453d;
 
-    public static BothData BOTHDATA = new EzoRedFoxBothDa();
+    public static BothData BOTHDATA = new BothDaEzoRedFox();
     public static WorkBytes WORKBYTES = new EzoRedFoxBytes();
-    public static Sounds SOUNDS = new EzoRedFoxSounds();
+    public static Sounds SOUNDS = new SoundEzoRedFox();
 
-    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxBothDa.MAX_SYNC];
-    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[EzoRedFoxBothDa.MAX_FRAME];
+    public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[BothDaEzoRedFox.MAX_SYNC];
+    public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[BothDaEzoRedFox.MAX_FRAME];
     public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 
     public static int[] ATTACK_FRAME_INT_ARRAY = new int[]
@@ -86,7 +86,7 @@ public class WildEzoRedFox extends SkinningEntities
     @SideOnly(Side.CLIENT)
     public void updateClient()
     {
-        ClientEzoRedFoxMemory cliententitiesmemory = (ClientEzoRedFoxMemory)this.bothentitiesmemory;
+        ClientEzoRedFox cliententitiesmemory = (ClientEzoRedFox)this.bothentitiesmemory;
         EzoRedFoxRender skinningrender = (EzoRedFoxRender)cliententitiesmemory.objectrender;
         BothData bothdata = cliententitiesmemory.bothdata;
         int frame = skinningrender.frame_int_array[0];
@@ -177,7 +177,7 @@ public class WildEzoRedFox extends SkinningEntities
     @Override
     public void createServer()
     {
-        ServerEzoRedFoxMemory serverentitiesmemory = (ServerEzoRedFoxMemory)this.bothentitiesmemory;
+        ServerEzoRedFox serverentitiesmemory = (ServerEzoRedFox)this.bothentitiesmemory;
         WorkBytes workbytes = serverentitiesmemory.workbytes;
         serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array = new SkinningEntitiesLiveFrame[1];
 
@@ -302,12 +302,12 @@ public class WildEzoRedFox extends SkinningEntities
     @SideOnly(Side.CLIENT)
     public void createClientEntitiesMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
-        new ClientEzoRedFoxMemory(skinningentities, bothdata, workbytes);
+        new ClientEzoRedFox(skinningentities, bothdata, workbytes);
     }
 
     @Override
     public void createServerEntitiesMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
-        new ServerEzoRedFoxMemory(skinningentities, bothdata, workbytes);
+        new ServerEzoRedFox(skinningentities, bothdata, workbytes);
     }
 }

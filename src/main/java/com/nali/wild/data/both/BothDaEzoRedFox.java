@@ -2,7 +2,7 @@ package com.nali.wild.data.both;
 
 import com.nali.data.BothData;
 
-public class SandCatBothDa implements BothData
+public class BothDaEzoRedFox implements BothData
 {
     public static int MAX_FRAME = 1;
     public static int MAX_SYNC = 1;

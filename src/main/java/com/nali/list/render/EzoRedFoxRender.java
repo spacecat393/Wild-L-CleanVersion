@@ -3,7 +3,7 @@ package com.nali.list.render;
 import com.nali.data.client.ClientData;
 import com.nali.list.entity.WildEzoRedFox;
 import com.nali.render.EntitiesRenderMemory;
-import com.nali.wild.data.client.EzoRedFoxClientDa;
+import com.nali.wild.data.client.ClientDaEzoRedFox;
 import com.nali.wild.render.skinning.WildSkinningEntitiesRender;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,7 +17,7 @@ public class EzoRedFoxRender extends WildSkinningEntitiesRender
 //    public static int ID;
 //    public static DataLoader DATALOADER = RenderHelper.DATALOADER;
 //    public static BothData BOTHDATA = WildEzoRedFox.BOTHDATA;
-    public static ClientData CLIENTDATA = new EzoRedFoxClientDa();
+    public static ClientData CLIENTDATA = new ClientDaEzoRedFox();
     public byte[] model_byte_array;
 
     public EzoRedFoxRender(EntitiesRenderMemory entitiesrendermemory, Entity entity)

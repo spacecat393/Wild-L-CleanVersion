@@ -1,4 +1,4 @@
-package com.nali.wild.entities.memory.client;
+package com.nali.wild.entity.memory.client;
 
 import com.nali.data.BothData;
 import com.nali.list.render.SandCatRender;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static com.nali.list.data.WildData.MODEL_STEP;
 
 @SideOnly(Side.CLIENT)
-public class ClientSandCatMemory extends ClientEntitiesMemory
+public class ClientSandCat extends ClientEntitiesMemory
 {
 //    @SideOnly(Side.CLIENT)
     public static int[] IV_INT_ARRAY = new int[]
@@ -45,7 +45,7 @@ public class ClientSandCatMemory extends ClientEntitiesMemory
 //    @SideOnly(Side.CLIENT)
     public int eyes_tick = 0;
 
-    public ClientSandCatMemory(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
+    public ClientSandCat(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
         super(skinningentities, bothdata, workbytes);
         this.itemlayerrender.iv_int_array = IV_INT_ARRAY;
@@ -80,6 +80,6 @@ public class ClientSandCatMemory extends ClientEntitiesMemory
     @Override
     public int[] getIVIntArray()
     {
-        return ClientSandCatMemory.IV_INT_ARRAY;
+        return ClientSandCat.IV_INT_ARRAY;
     }
 }

@@ -3,7 +3,7 @@ package com.nali.list.render;
 import com.nali.data.client.ClientData;
 import com.nali.list.entity.WildSandCat;
 import com.nali.render.EntitiesRenderMemory;
-import com.nali.wild.data.client.SandCatClientDa;
+import com.nali.wild.data.client.ClientDaSandCat;
 import com.nali.wild.render.skinning.WildSkinningEntitiesRender;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,7 +17,7 @@ public class SandCatRender extends WildSkinningEntitiesRender
 //    public static int ID;
 //    public static DataLoader DATALOADER = RenderHelper.DATALOADER;
 //    public static BothData BOTHDATA = WildSandCat.BOTHDATA;
-    public static ClientData CLIENTDATA = new SandCatClientDa();
+    public static ClientData CLIENTDATA = new ClientDaSandCat();
     public byte[] model_byte_array;
 
     public SandCatRender(EntitiesRenderMemory entitiesrendermemory, Entity entity)

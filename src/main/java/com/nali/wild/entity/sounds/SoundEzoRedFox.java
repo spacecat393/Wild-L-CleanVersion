@@ -1,9 +1,11 @@
 package com.nali.wild.entity.sounds;
 
-import com.nali.small.entities.sounds.Sounds;
+import com.nali.sound.ISoundLe;
 
-public class SoundEzoRedFox implements Sounds
+public class SoundEzoRedFox implements ISoundLe
 {
+    public static ISoundLe ISOUNDLE = new SoundEzoRedFox();
+
     @Override
     public int HURT()
     {

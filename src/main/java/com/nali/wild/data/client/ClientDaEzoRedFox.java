@@ -1,29 +1,32 @@
 package com.nali.wild.data.client;
 
-import com.nali.data.client.SkinningClientData;
+import com.nali.data.client.IClientDaS;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static com.nali.list.data.WildData.MODEL_STEP;
+import static com.nali.list.data.WildData.ANIMATION_STEP;
+import static com.nali.list.data.WildData.MODEL_S_STEP;
 
 @SideOnly(Side.CLIENT)
-public class ClientDaEzoRedFox implements SkinningClientData
+public class ClientDaEzoRedFox implements IClientDaS
 {
+    public static IClientDaS ICLIENTDAS = new ClientDaEzoRedFox();
+
     @Override
     public int AnimationID()
     {
-        return MODEL_STEP/* + 0*/;
+        return ANIMATION_STEP/* + 0*/;
     }
 
     @Override
     public int StartPart()
     {
-        return MODEL_STEP + 1;
+        return MODEL_S_STEP/* + 0*/;
     }
 
     @Override
     public int EndPart()
     {
-        return MODEL_STEP + 14;
+        return MODEL_S_STEP + 13;
     }
 }

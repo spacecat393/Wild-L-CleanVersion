@@ -1,11 +1,22 @@
 package com.nali.wild.data.both;
 
-import com.nali.data.BothData;
+import com.nali.data.IBothDaNe;
+import com.nali.data.IBothDaNs;
+import com.nali.data.IBothDaSn;
+import com.nali.sound.ISoundLe;
+import com.nali.wild.entity.sounds.SoundEzoRedFox;
 
-public class BothDaEzoRedFox implements BothData
+public class BothDaEzoRedFox<SD extends ISoundLe> extends IBothDaNs<SD> implements IBothDaSn, IBothDaNe
 {
-    public static int MAX_FRAME = 1;
-    public static int MAX_SYNC = 1;
+    public static BothDaEzoRedFox IBOTHDASN = new BothDaEzoRedFox(SoundEzoRedFox.ISOUNDLE);
+
+    public static byte MAX_FRAME = 1;
+    public static byte MAX_SYNC = 1;
+
+    public BothDaEzoRedFox(SD sd)
+    {
+        super(sd);
+    }
 
     @Override
     public float Width()
@@ -26,13 +37,13 @@ public class BothDaEzoRedFox implements BothData
     }
 
     @Override
-    public int MaxFrame()
+    public byte MaxFrame()
     {
         return MAX_FRAME;
     }
 
     @Override
-    public int MaxSync()
+    public byte MaxSync()
     {
         return MAX_SYNC;
     }

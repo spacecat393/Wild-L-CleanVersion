@@ -4,7 +4,7 @@ import com.nali.data.client.ClientData;
 import com.nali.list.entity.WildEzoRedFox;
 import com.nali.render.EntitiesRenderMemory;
 import com.nali.wild.data.client.ClientDaEzoRedFox;
-import com.nali.wild.render.skinning.WildSkinningEntitiesRender;
+import com.nali.wild.render.skinning.WildRenderSe;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
-public class EzoRedFoxRender extends WildSkinningEntitiesRender
+public class RenderEzoRedFox extends WildRenderSe
 {
 //    public static int ID;
 //    public static DataLoader DATALOADER = RenderHelper.DATALOADER;
@@ -20,7 +20,7 @@ public class EzoRedFoxRender extends WildSkinningEntitiesRender
     public static ClientData CLIENTDATA = new ClientDaEzoRedFox();
     public byte[] model_byte_array;
 
-    public EzoRedFoxRender(EntitiesRenderMemory entitiesrendermemory, Entity entity)
+    public RenderEzoRedFox(EntitiesRenderMemory entitiesrendermemory, Entity entity)
     {
         super(entitiesrendermemory, WildEzoRedFox.BOTHDATA, CLIENTDATA/*, RenderHelper.DATALOADER*/, entity);
         this.model_byte_array = new byte[(int)Math.ceil((CLIENTDATA.EndPart() - CLIENTDATA.StartPart()) / 8.0D)];

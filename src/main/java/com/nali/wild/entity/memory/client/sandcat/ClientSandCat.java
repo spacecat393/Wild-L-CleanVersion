@@ -1,7 +1,7 @@
-package com.nali.wild.entity.memory.client;
+package com.nali.wild.entity.memory.client.sandcat;
 
 import com.nali.data.BothData;
-import com.nali.list.render.EzoRedFoxRender;
+import com.nali.list.render.RenderSandCat;
 import com.nali.render.EntitiesRenderMemory;
 import com.nali.render.NoSoundRender;
 import com.nali.render.ObjectRender;
@@ -15,17 +15,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static com.nali.list.data.WildData.MODEL_STEP;
 
 @SideOnly(Side.CLIENT)
-public class ClientEzoRedFox extends ClientEntitiesMemory
+public class ClientSandCat extends ClientEntitiesMemory
 {
 //    @SideOnly(Side.CLIENT)
     public static int[] IV_INT_ARRAY = new int[]
     {
-        2+1 + MODEL_STEP, 8760,
-        2+1 + MODEL_STEP, 10195,
-        4+1 + MODEL_STEP, 1525,
-        2+1 + MODEL_STEP, 5390,
-        2+1 + MODEL_STEP, 14181,
-        11+1 + MODEL_STEP, 961
+        8+15 + MODEL_STEP, 25349,
+        8+15 + MODEL_STEP, 22457,
+        6+15 + MODEL_STEP, 906,
+        8+15 + MODEL_STEP, 14975,
+        8+15 + MODEL_STEP, 7196,
+        2+15 + MODEL_STEP, 572
     };
 //    @SideOnly(Side.CLIENT)
     public static float[] ROTATION_FLOAT_ARRAY = new float[]
@@ -45,7 +45,7 @@ public class ClientEzoRedFox extends ClientEntitiesMemory
 //    @SideOnly(Side.CLIENT)
     public int eyes_tick = 0;
 
-    public ClientEzoRedFox(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
+    public ClientSandCat(SkinningEntities skinningentities, BothData bothdata, WorkBytes workbytes)
     {
         super(skinningentities, bothdata, workbytes);
         this.itemlayerrender.iv_int_array = IV_INT_ARRAY;
@@ -56,18 +56,19 @@ public class ClientEzoRedFox extends ClientEntitiesMemory
     @Override
     public void initFakeFrame()
     {
-        EzoRedFoxRender skinningrender = (EzoRedFoxRender)this.objectrender;
-        skinningrender.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
-//        skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
-//        skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
+        RenderSandCat skinningrender = (RenderSandCat)this.objectrender;
+//        skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
 //        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
-        skinningrender.model_byte_array[0] &= 223 & 191 & 127;
+        skinningrender.model_byte_array[0] &= 239 & 127;
+//        skinningrender.model_byte_array[10 / 8] &= 251;//255 - Math.pow(2, 10 % 8)
+//        skinningrender.model_byte_array[11 / 8] &= 247;//255 - Math.pow(2, 11 % 8)
+        skinningrender.model_byte_array[1] &= 251 & 247;
     }
 
     @Override
     public ObjectRender createObjectRender()
     {
-        return new EzoRedFoxRender(new EntitiesRenderMemory(), this.main_skinningentities);
+        return new RenderSandCat(new EntitiesRenderMemory(), this.main_skinningentities);
     }
 
     @Override
@@ -79,6 +80,6 @@ public class ClientEzoRedFox extends ClientEntitiesMemory
     @Override
     public int[] getIVIntArray()
     {
-        return ClientEzoRedFox.IV_INT_ARRAY;
+        return ClientSandCat.IV_INT_ARRAY;
     }
 }

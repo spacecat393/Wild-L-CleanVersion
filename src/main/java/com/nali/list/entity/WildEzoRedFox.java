@@ -1,15 +1,15 @@
 package com.nali.list.entity;
 
 import com.nali.data.BothData;
-import com.nali.list.render.EzoRedFoxRender;
+import com.nali.list.render.RenderEzoRedFox;
 import com.nali.small.entities.bytes.WorkBytes;
 import com.nali.small.entities.skinning.SkinningEntities;
 import com.nali.small.entities.skinning.ai.frame.SkinningEntitiesLiveFrame;
 import com.nali.small.entities.sounds.Sounds;
 import com.nali.wild.data.both.BothDaEzoRedFox;
 import com.nali.wild.entity.bytes.EzoRedFoxBytes;
-import com.nali.wild.entity.memory.client.ClientEzoRedFox;
-import com.nali.wild.entity.memory.server.ServerEzoRedFox;
+import com.nali.wild.entity.memory.client.ezoredfox.ClientEzoRedFox;
+import com.nali.wild.entity.memory.server.ezoredfox.ServerEzoRedFox;
 import com.nali.wild.entity.sounds.SoundEzoRedFox;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
@@ -87,7 +87,7 @@ public class WildEzoRedFox extends SkinningEntities
     public void updateClient()
     {
         ClientEzoRedFox cliententitiesmemory = (ClientEzoRedFox)this.bothentitiesmemory;
-        EzoRedFoxRender skinningrender = (EzoRedFoxRender)cliententitiesmemory.objectrender;
+        RenderEzoRedFox skinningrender = (RenderEzoRedFox)cliententitiesmemory.objectrender;
         BothData bothdata = cliententitiesmemory.bothdata;
         int frame = skinningrender.frame_int_array[0];
 

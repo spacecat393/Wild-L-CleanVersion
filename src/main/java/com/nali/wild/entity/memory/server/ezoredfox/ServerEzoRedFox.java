@@ -1,4 +1,4 @@
-package com.nali.wild.entity.memory.server;
+package com.nali.wild.entity.memory.server.ezoredfox;
 
 import com.nali.data.BothData;
 import com.nali.small.entities.bytes.WorkBytes;

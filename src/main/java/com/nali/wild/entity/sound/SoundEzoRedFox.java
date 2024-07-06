@@ -1,4 +1,4 @@
-package com.nali.wild.entity.sounds;
+package com.nali.wild.entity.sound;
 
 import com.nali.sound.ISoundLe;
 

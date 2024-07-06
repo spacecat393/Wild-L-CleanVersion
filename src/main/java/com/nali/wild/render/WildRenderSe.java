@@ -1,4 +1,4 @@
-package com.nali.wild.render.skinning;
+package com.nali.wild.render;
 
 import com.nali.data.IBothDaNe;
 import com.nali.data.IBothDaSn;

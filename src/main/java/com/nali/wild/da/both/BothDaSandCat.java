@@ -1,19 +1,19 @@
-package com.nali.wild.data.both;
+package com.nali.wild.da.both;
 
 import com.nali.data.IBothDaNe;
 import com.nali.data.IBothDaNs;
 import com.nali.data.IBothDaSn;
 import com.nali.sound.ISoundLe;
-import com.nali.wild.entity.sounds.SoundEzoRedFox;
+import com.nali.wild.entity.sound.SoundSandCat;
 
-public class BothDaEzoRedFox<SD extends ISoundLe> extends IBothDaNs<SD> implements IBothDaSn, IBothDaNe
+public class BothDaSandCat<SD extends ISoundLe> extends IBothDaNs<SD> implements IBothDaSn, IBothDaNe
 {
-    public static BothDaEzoRedFox IBOTHDASN = new BothDaEzoRedFox(SoundEzoRedFox.ISOUNDLE);
+    public static BothDaSandCat IBOTHDASN = new BothDaSandCat(SoundSandCat.ISOUNDLE);
 
     public static byte MAX_FRAME = 1;
     public static byte MAX_SYNC = 1;
 
-    public BothDaEzoRedFox(SD sd)
+    public BothDaSandCat(SD sd)
     {
         super(sd);
     }

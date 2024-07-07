@@ -1,15 +1,26 @@
 package com.nali.list.entity;
 
-import com.nali.data.IBothDaNe;
+import com.nali.da.IBothDaNe;
+import com.nali.list.render.s.RenderSandCat;
 import com.nali.small.entity.EntityLeInv;
+import com.nali.small.entity.Inventory;
+import com.nali.small.entity.memo.client.box.mix.MixBoxSle;
 import com.nali.wild.da.both.BothDaSandCat;
+import com.nali.wild.da.client.ClientDaSandCat;
+import com.nali.wild.entity.memo.client.sandcat.ClientSandCat;
+import com.nali.wild.entity.memo.client.sandcat.MixRenderSandCat;
 import com.nali.wild.entity.memo.server.sandcat.MixAISandCat;
-import com.nali.wild.entity.sound.SoundSandCat;
+import com.nali.wild.entity.memo.server.sandcat.ServerSandCat;
+import com.nali.wild.entity.sound.SoundDaSandCat;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static com.nali.Nali.I;
 
 public class WildSandCat extends EntityLeInv
 {
@@ -109,16 +120,25 @@ public class WildSandCat extends EntityLeInv
         return FLOAT_DATAPARAMETER_ARRAY;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void newC()
     {
-
+        RenderSandCat r = new RenderSandCat(I.clientloader.stores, ClientDaSandCat.ICLIENTDAS, BothDaSandCat.IBOTHDASN);
+        ClientSandCat c = new ClientSandCat(this, r, new Inventory(1));
+        c.mb = new MixBoxSle(c);
+        c.mr = new MixRenderSandCat(c);
+        r.c = c;
+        this.ibothleinv = c;
     }
 
     @Override
     public void newS()
     {
-
+        ServerSandCat s = new ServerSandCat(this, new Inventory(1));
+        s.a = new MixAISandCat(s);
+        s.initFrame();
+        this.ibothleinv = s;
     }
 
     @Override
@@ -130,7 +150,7 @@ public class WildSandCat extends EntityLeInv
     @Override
     public Object getSD()
     {
-        return SoundSandCat.ISOUNDLE;
+        return SoundDaSandCat.ISOUNDDALE;
     }
 
 //    @Override

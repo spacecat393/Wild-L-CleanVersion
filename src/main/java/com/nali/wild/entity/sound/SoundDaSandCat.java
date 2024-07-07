@@ -1,10 +1,10 @@
 package com.nali.wild.entity.sound;
 
-import com.nali.sound.ISoundLe;
+import com.nali.sound.ISoundDaLe;
 
-public class SoundSandCat implements ISoundLe
+public class SoundDaSandCat implements ISoundDaLe
 {
-    public static ISoundLe ISOUNDLE = new SoundSandCat();
+    public static ISoundDaLe ISOUNDDALE = new SoundDaSandCat();
 
     @Override
     public int HURT()

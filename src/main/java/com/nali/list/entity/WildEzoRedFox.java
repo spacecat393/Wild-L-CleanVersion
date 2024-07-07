@@ -1,15 +1,26 @@
 package com.nali.list.entity;
 
-import com.nali.data.IBothDaNe;
+import com.nali.da.IBothDaNe;
+import com.nali.list.render.s.RenderEzoRedFox;
 import com.nali.small.entity.EntityLeInv;
+import com.nali.small.entity.Inventory;
+import com.nali.small.entity.memo.client.box.mix.MixBoxSle;
 import com.nali.wild.da.both.BothDaEzoRedFox;
+import com.nali.wild.da.client.ClientDaEzoRedFox;
+import com.nali.wild.entity.memo.client.ezoredfox.ClientEzoRedFox;
+import com.nali.wild.entity.memo.client.ezoredfox.MixRenderEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.MixAIEzoRedFox;
-import com.nali.wild.entity.sound.SoundEzoRedFox;
+import com.nali.wild.entity.memo.server.ezoredfox.ServerEzoRedFox;
+import com.nali.wild.entity.sound.SoundDaEzoRedFox;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static com.nali.Nali.I;
 
 public class WildEzoRedFox extends EntityLeInv
 {
@@ -108,16 +119,25 @@ public class WildEzoRedFox extends EntityLeInv
         return FLOAT_DATAPARAMETER_ARRAY;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void newC()
     {
-
+        RenderEzoRedFox r = new RenderEzoRedFox(I.clientloader.stores, ClientDaEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
+        ClientEzoRedFox c = new ClientEzoRedFox(this, r, new Inventory(1));
+        c.mb = new MixBoxSle(c);
+        c.mr = new MixRenderEzoRedFox(c);
+        r.c = c;
+        this.ibothleinv = c;
     }
 
     @Override
     public void newS()
     {
-
+        ServerEzoRedFox s = new ServerEzoRedFox(this, new Inventory(1));
+        s.a = new MixAIEzoRedFox(s);
+        s.initFrame();
+        this.ibothleinv = s;
     }
 
     @Override
@@ -129,6 +149,6 @@ public class WildEzoRedFox extends EntityLeInv
     @Override
     public Object getSD()
     {
-        return SoundEzoRedFox.ISOUNDLE;
+        return SoundDaEzoRedFox.ISOUNDDALE;
     }
 }

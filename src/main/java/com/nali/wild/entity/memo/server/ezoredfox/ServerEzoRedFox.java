@@ -1,7 +1,7 @@
 package com.nali.wild.entity.memo.server.ezoredfox;
 
-import com.nali.data.IBothDaNe;
-import com.nali.data.IBothDaSn;
+import com.nali.da.IBothDaNe;
+import com.nali.da.IBothDaSn;
 import com.nali.small.entity.EntityLeInv;
 import com.nali.small.entity.IMixLe;
 import com.nali.small.entity.Inventory;
@@ -23,9 +23,9 @@ import com.nali.small.entity.memo.server.ai.frame.tloop.FrameSleTLoopWalk;
 import com.nali.small.entity.memo.server.ai.frame.tloopinset.FrameSeTLoopInSetSit;
 import com.nali.small.entity.memo.server.ai.frame.tloopinset.FrameSleTLoopInSetDie;
 import com.nali.small.entity.memo.server.ai.frame.tloopinset.FrameSleTLoopInSetWalk;
-import com.nali.sound.ISoundLe;
+import com.nali.sound.ISoundDaLe;
 
-public class ServerEzoRedFox<SD extends ISoundLe, BD extends IBothDaNe & IBothDaSn, E extends EntityLeInv, I extends IMixLe<SD, BD, E>, A extends MixAIE<SD, BD, E, I, ?>> extends ServerSleInv<SD, BD, E, I, A>
+public class ServerEzoRedFox<SD extends ISoundDaLe, BD extends IBothDaNe & IBothDaSn, E extends EntityLeInv, I extends IMixLe<SD, BD, E>, A extends MixAIE<SD, BD, E, I, ?>> extends ServerSleInv<SD, BD, E, I, A>
 {
     public static int[][] FRAME_INT_2D_ARRAY = new int[][]
     {
@@ -46,7 +46,6 @@ public class ServerEzoRedFox<SD extends ISoundLe, BD extends IBothDaNe & IBothDa
         { 111, 190 },//attack long
         { 191, 241 }//attack short
     };
-
     public static byte[] FRAME_BYTE_ARRAY = new byte[]
     {
         0, 3, 4,
@@ -67,8 +66,7 @@ public class ServerEzoRedFox<SD extends ISoundLe, BD extends IBothDaNe & IBothDa
         0, 11,
         0, 12
     };
-
-    public FrameS[] frames_array;
+    public FrameS[][] frames_2d_array;
 
     public ServerEzoRedFox(I i, Inventory inventory)
     {
@@ -78,30 +76,32 @@ public class ServerEzoRedFox<SD extends ISoundLe, BD extends IBothDaNe & IBothDa
     @Override
     public void initFrame()
     {
-        this.frames_array = new FrameS[]
+        this.frames_2d_array = new FrameS[][]
         {
-            new FrameSleTLoopInSetDie(this, 0),
-            new FrameSleFLoopInSetEndMove(this, 3),
-            new FrameSleFLoopDie(this, 6),
+            {
+                new FrameSleTLoopInSetDie(this, 0),
+                new FrameSleFLoopInSetEndMove(this, 3),
+                new FrameSleFLoopDie(this, 6),
 
-            new FrameSeTLoopInSetSit(this, 8),
-            new FrameSleFLoopInSetEndMove(this, 11),
-            new FrameSeFLoopSit(this, 14),
+                new FrameSeTLoopInSetSit(this, 8),
+                new FrameSleFLoopInSetEndMove(this, 11),
+                new FrameSeFLoopSit(this, 14),
 
-            new FrameSleFLoopOffSetAttackPrepare(this, 16),
-            new FrameSleFLoopOffSetAttackPrepare(this, 19),
-            new FrameSleMelee(this, 22, (byte)2),
+                new FrameSleFLoopOffSetAttackPrepare(this, 16),
+                new FrameSleFLoopOffSetAttackPrepare(this, 19),
+                new FrameSleMelee(this, 22, (byte)2),
 
-            new FrameSleTLoopAttackWalk(this, 25),
+                new FrameSleTLoopAttackWalk(this, 25),
 
-            new FrameSleTLoopInSetWalk(this, 27),
-            new FrameSFLoopInSet(this, 30),
-            new FrameSleTLoopWalk(this, 33),
+                new FrameSleTLoopInSetWalk(this, 27),
+                new FrameSFLoopInSet(this, 30),
+                new FrameSleTLoopWalk(this, 33),
 
-            new FrameSFLoopFreeHardReady(this, 35),
-            new FrameSFLoopFreeSoftReady(this, 37),
-            new FrameSleFLoopFreePE(this, 39),
-            new FrameSTLoop(this, 41)
+                new FrameSFLoopFreeHardReady(this, 35),
+                new FrameSFLoopFreeSoftReady(this, 37),
+                new FrameSleFLoopFreePE(this, 39),
+                new FrameSTLoop(this, 41)
+            }
         };
 //        () -> this.isZeroMove() && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoopInSet(3, 4),
 //        () -> serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setFLoopInSet(3, 5) && serverentitiesmemory.entitiesaimemory.skinningentitiesfindmove.endGoalT(),
@@ -174,9 +174,9 @@ public class ServerEzoRedFox<SD extends ISoundLe, BD extends IBothDaNe & IBothDa
     }
 
     @Override
-    public FrameS[] getFrameSArray()
+    public FrameS[][] getFrameS2DArray()
     {
-        return this.frames_array;
+        return this.frames_2d_array;
     }
 
     @Override

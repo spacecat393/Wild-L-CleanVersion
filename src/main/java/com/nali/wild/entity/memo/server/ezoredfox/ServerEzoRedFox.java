@@ -8,7 +8,7 @@ import com.nali.small.entity.Inventory;
 import com.nali.small.entity.memo.server.ServerSleInv;
 import com.nali.small.entity.memo.server.ai.MixAIE;
 import com.nali.small.entity.memo.server.ai.frame.FrameS;
-import com.nali.small.entity.memo.server.ai.frame.FrameSleMelee;
+import com.nali.small.entity.memo.server.ai.frame.attack.FrameSleAttackPlus;
 import com.nali.small.entity.memo.server.ai.frame.floop.FrameSeFLoopSit;
 import com.nali.small.entity.memo.server.ai.frame.floop.FrameSleFLoopDie;
 import com.nali.small.entity.memo.server.ai.frame.floopfree.FrameSFLoopFreeHardReady;
@@ -56,7 +56,7 @@ public class ServerEzoRedFox<SD extends ISoundDaLe, BD extends IBothDaNe & IBoth
         0, 6,
         0, 14, 14,
         0, 15, 15,
-        0, 14, 15,
+        0, 2, 14, 15,
         0, 13,
         0, 0, 1,
         0, 0, 2,
@@ -89,18 +89,18 @@ public class ServerEzoRedFox<SD extends ISoundDaLe, BD extends IBothDaNe & IBoth
 
                 new FrameSleFLoopOffSetAttackPrepare(this, 16),
                 new FrameSleFLoopOffSetAttackPrepare(this, 19),
-                new FrameSleMelee(this, 22, (byte)2),
+                new FrameSleAttackPlus(this, 22/*, (byte)2*/),
 
-                new FrameSleTLoopAttackWalk(this, 25),
+                new FrameSleTLoopAttackWalk(this, 25+1+2),
 
-                new FrameSleTLoopInSetWalk(this, 27),
-                new FrameSFLoopInSet(this, 30),
-                new FrameSleTLoopWalk(this, 33),
+                new FrameSleTLoopInSetWalk(this, 27+1+2),
+                new FrameSFLoopInSet(this, 30+1+2),
+                new FrameSleTLoopWalk(this, 33+1+2),
 
-                new FrameSFLoopFreeHardReady(this, 35),
-                new FrameSFLoopFreeSoftReady(this, 37),
-                new FrameSleFLoopFreePE(this, 39),
-                new FrameSTLoop(this, 41)
+                new FrameSFLoopFreeHardReady(this, 35+1+2),
+                new FrameSFLoopFreeSoftReady(this, 37+1+2),
+                new FrameSleFLoopFreePE(this, 39+1+2),
+                new FrameSTLoop(this, 41+1+2)
             }
         };
 //        () -> this.isZeroMove() && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoopInSet(3, 4),

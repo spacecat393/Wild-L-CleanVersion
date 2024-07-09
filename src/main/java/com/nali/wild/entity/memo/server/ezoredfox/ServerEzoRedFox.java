@@ -9,7 +9,7 @@ import com.nali.small.entity.memo.server.ServerSleInv;
 import com.nali.small.entity.memo.server.ai.MixAIE;
 import com.nali.small.entity.memo.server.ai.frame.FrameS;
 import com.nali.small.entity.memo.server.ai.frame.attack.FrameSleAttackPlus;
-import com.nali.small.entity.memo.server.ai.frame.floop.FrameSeFLoopSit;
+import com.nali.small.entity.memo.server.ai.frame.floop.FrameSFLoopSit;
 import com.nali.small.entity.memo.server.ai.frame.floop.FrameSleFLoopDie;
 import com.nali.small.entity.memo.server.ai.frame.floopfree.FrameSFLoopFreeHardReady;
 import com.nali.small.entity.memo.server.ai.frame.floopfree.FrameSFLoopFreeSoftReady;
@@ -20,7 +20,7 @@ import com.nali.small.entity.memo.server.ai.frame.floopoffset.FrameSleFLoopOffSe
 import com.nali.small.entity.memo.server.ai.frame.tloop.FrameSTLoop;
 import com.nali.small.entity.memo.server.ai.frame.tloop.FrameSleTLoopAttackWalk;
 import com.nali.small.entity.memo.server.ai.frame.tloop.FrameSleTLoopWalk;
-import com.nali.small.entity.memo.server.ai.frame.tloopinset.FrameSeTLoopInSetSit;
+import com.nali.small.entity.memo.server.ai.frame.tloopinset.FrameSTLoopInSetSit;
 import com.nali.small.entity.memo.server.ai.frame.tloopinset.FrameSleTLoopInSetDie;
 import com.nali.small.entity.memo.server.ai.frame.tloopinset.FrameSleTLoopInSetWalk;
 import com.nali.sound.ISoundDaLe;
@@ -83,9 +83,9 @@ public class ServerEzoRedFox<SD extends ISoundDaLe, BD extends IBothDaNe & IBoth
                 new FrameSleFLoopInSetEndMove(this, 3),
                 new FrameSleFLoopDie(this, 6),
 
-                new FrameSeTLoopInSetSit(this, 8),
+                new FrameSTLoopInSetSit(this, 8),
                 new FrameSleFLoopInSetEndMove(this, 11),
-                new FrameSeFLoopSit(this, 14),
+                new FrameSFLoopSit(this, 14),
 
                 new FrameSleFLoopOffSetAttackPrepare(this, 16),
                 new FrameSleFLoopOffSetAttackPrepare(this, 19),

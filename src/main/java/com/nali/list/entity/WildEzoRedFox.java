@@ -135,7 +135,9 @@ public class WildEzoRedFox extends EntityLeInv
     public void newS()
     {
         ServerEzoRedFox s = new ServerEzoRedFox(this, new Inventory(1));
-        s.a = new MixAIEzoRedFox(s);
+        MixAIEzoRedFox a = new MixAIEzoRedFox(s);
+        s.a = a;
+        a.init();
         s.initFrame();
         this.ibothleinv = s;
     }

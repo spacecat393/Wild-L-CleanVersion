@@ -136,7 +136,9 @@ public class WildSandCat extends EntityLeInv
     public void newS()
     {
         ServerSandCat s = new ServerSandCat(this, new Inventory(1));
-        s.a = new MixAISandCat(s);
+        MixAISandCat a = new MixAISandCat(s);
+        s.a = a;
+        a.init();
         s.initFrame();
         this.ibothleinv = s;
     }

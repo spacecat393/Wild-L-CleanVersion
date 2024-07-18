@@ -44,6 +44,7 @@ public class MixAIEzoRedFox<SD extends ISoundDaLe, BD extends BothDaEzoRedFox<SD
     @Override
     public void init()
     {
+        super.init();
         AILeAttack<SD, BD, E, I, S, ?> aileattack = (AILeAttack<SD, BD, E, I, S, ?>)this.s.a.aie_map.get(AILeAttack.ID);
         aileattack.attack_frame_int_array = ATTACK_FRAME_INT_ARRAY;
         aileattack.minimum_distance = 1.0F;

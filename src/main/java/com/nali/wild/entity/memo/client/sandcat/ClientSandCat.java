@@ -118,13 +118,13 @@ public class ClientSandCat<RG extends MemoGs, RS extends MemoSs, RC extends ICli
     @Override
     public void initFakeFrame()
     {
-        super.initFakeFrame();
 //        skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
 //        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
         this.r.model_byte_array[0] &= 239 & 127;
 //        skinningrender.model_byte_array[10 / 8] &= 251;//255 - Math.pow(2, 10 % 8)
 //        skinningrender.model_byte_array[11 / 8] &= 247;//255 - Math.pow(2, 11 % 8)
         this.r.model_byte_array[1] &= 251 & 247;
+        super.initFakeFrame();
     }
 
     @Override

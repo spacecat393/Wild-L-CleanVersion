@@ -20,8 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static com.nali.Nali.I;
-
 public class WildSandCat extends EntityLeInv
 {
     public static int eggPrimary = 0xffebc7;
@@ -124,7 +122,7 @@ public class WildSandCat extends EntityLeInv
     @Override
     public void newC()
     {
-        RenderSandCat r = new RenderSandCat(I.clientloader.stores, ClientDaSandCat.ICLIENTDAS, BothDaSandCat.IBOTHDASN);
+        RenderSandCat r = new RenderSandCat(ClientDaSandCat.ICLIENTDAS, BothDaSandCat.IBOTHDASN);
         ClientSandCat c = new ClientSandCat(this, r, new Inventory(1));
         c.mb = new MixBoxSle(c);
         c.mr = new MixRenderSandCat(c);

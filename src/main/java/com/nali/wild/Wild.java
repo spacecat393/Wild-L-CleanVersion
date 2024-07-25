@@ -1,15 +1,28 @@
 package com.nali.wild;
 
+import com.nali.system.opengl.memo.client.MemoC;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = Wild.ID)
 public class Wild
 {
     public final static String ID = "wild";
+    static
+    {
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+        {
+            int max_bone = 68 * 16;
+            if (MemoC.MAX_BONE < max_bone)
+            {
+                MemoC.MAX_BONE = max_bone;
+            }
+        }
+    }
 
-    @Instance
-    public static Wild I;
+//    @Instance
+//    public static Wild I;
 
 //    @EventHandler
 //    public void onFMLPreInitializationEvent(FMLPreInitializationEvent event)

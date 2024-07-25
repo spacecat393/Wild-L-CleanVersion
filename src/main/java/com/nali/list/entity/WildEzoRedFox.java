@@ -20,8 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static com.nali.Nali.I;
-
 public class WildEzoRedFox extends EntityLeInv
 {
     public static int eggPrimary = 0xffb56d;
@@ -123,7 +121,7 @@ public class WildEzoRedFox extends EntityLeInv
     @Override
     public void newC()
     {
-        RenderEzoRedFox r = new RenderEzoRedFox(I.clientloader.stores, ClientDaEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
+        RenderEzoRedFox r = new RenderEzoRedFox(ClientDaEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
         ClientEzoRedFox c = new ClientEzoRedFox(this, r, new Inventory(1));
         c.mb = new MixBoxSle(c);
         c.mr = new MixRenderEzoRedFox(c);

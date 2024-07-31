@@ -21,7 +21,7 @@ public class Wild
         }
     }
 
-//    @Instance
+//    @Mod.Instance
 //    public static Wild I;
 
 //    @EventHandler

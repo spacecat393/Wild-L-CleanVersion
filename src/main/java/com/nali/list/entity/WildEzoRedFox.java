@@ -121,7 +121,7 @@ public class WildEzoRedFox extends EntityLeInv
     @Override
     public void newC()
     {
-        RenderEzoRedFox r = new RenderEzoRedFox(ClientDaEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
+        RenderEzoRedFox r = new RenderEzoRedFox(RenderEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
         ClientEzoRedFox c = new ClientEzoRedFox(this, r, new Inventory(1));
         c.mb = new MixBoxSle(c);
         c.mr = new MixRenderEzoRedFox(c);

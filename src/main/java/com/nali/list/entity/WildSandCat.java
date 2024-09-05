@@ -122,7 +122,7 @@ public class WildSandCat extends EntityLeInv
     @Override
     public void newC()
     {
-        RenderSandCat r = new RenderSandCat(ClientDaSandCat.ICLIENTDAS, BothDaSandCat.IBOTHDASN);
+        RenderSandCat r = new RenderSandCat(RenderSandCat.ICLIENTDAS, BothDaSandCat.IBOTHDASN);
         ClientSandCat c = new ClientSandCat(this, r, new Inventory(1));
         c.mb = new MixBoxSle(c);
         c.mr = new MixRenderSandCat(c);

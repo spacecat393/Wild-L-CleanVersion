@@ -9,7 +9,7 @@ import static com.nali.list.data.WildData.*;
 @SideOnly(Side.CLIENT)
 public class ClientDaEzoRedFox implements IClientDaS
 {
-    public static IClientDaS ICLIENTDAS = new ClientDaEzoRedFox();
+//    public static IClientDaS ICLIENTDAS = new ClientDaEzoRedFox();
 
     @Override
     public int FrameID()

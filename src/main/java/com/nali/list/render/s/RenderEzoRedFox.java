@@ -8,6 +8,8 @@ import com.nali.small.entity.memo.client.ClientSle;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSle;
 import com.nali.small.entity.memo.client.render.mix.MixRenderSe;
 import com.nali.sound.ISoundDaLe;
+import com.nali.wild.da.both.BothDaEzoRedFox;
+import com.nali.wild.da.client.ClientDaEzoRedFox;
 import com.nali.wild.render.WildRenderSe;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,7 +22,8 @@ public class RenderEzoRedFox<E extends EntityLivingBase, I extends IMixLe<SD, BD
 {
 //    public static int ID;
 //    public static DataLoader DATALOADER = RenderHelper.DATALOADER;
-//    public static BothData BOTHDATA = WildEzoRedFox.BOTHDATA;
+    public static IClientDaS ICLIENTDAS = new ClientDaEzoRedFox();
+    public static IBothDaSn IBOTHDASN = BothDaEzoRedFox.IBOTHDASN;
     public byte[] model_byte_array;
 
     public RenderEzoRedFox(RC rc, BD bd)

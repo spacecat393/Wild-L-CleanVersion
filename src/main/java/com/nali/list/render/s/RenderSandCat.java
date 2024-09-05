@@ -8,6 +8,8 @@ import com.nali.small.entity.memo.client.ClientSle;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSle;
 import com.nali.small.entity.memo.client.render.mix.MixRenderSe;
 import com.nali.sound.ISoundDaLe;
+import com.nali.wild.da.both.BothDaSandCat;
+import com.nali.wild.da.client.ClientDaSandCat;
 import com.nali.wild.render.WildRenderSe;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,7 +22,8 @@ public class RenderSandCat<E extends EntityLivingBase, I extends IMixLe<SD, BD, 
 {
 //    public static int ID;
 //    public static DataLoader DATALOADER = RenderHelper.DATALOADER;
-//    public static BothData BOTHDATA = WildSandCat.BOTHDATA;
+    public static IClientDaS ICLIENTDAS = new ClientDaSandCat();
+    public static IBothDaSn IBOTHDASN = BothDaSandCat.IBOTHDASN;
     public byte[] model_byte_array;
 
     public RenderSandCat(RC rc, BD bd)

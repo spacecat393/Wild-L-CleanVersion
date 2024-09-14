@@ -7,10 +7,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class WildFRenderEzoRedFox<E extends WildEzoRedFox> extends FRenderSeInv<E>
+public class WildFRenderEzoRedFox
+<
+	E extends WildEzoRedFox
+> extends FRenderSeInv<E>
 {
-    public WildFRenderEzoRedFox(RenderManager rendermanager)
-    {
-        super(rendermanager);
-    }
+	public WildFRenderEzoRedFox(RenderManager rendermanager)
+	{
+		super(rendermanager);
+	}
 }

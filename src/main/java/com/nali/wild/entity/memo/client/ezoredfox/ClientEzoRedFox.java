@@ -4,10 +4,14 @@ import com.nali.da.IBothDaNe;
 import com.nali.da.IBothDaSn;
 import com.nali.da.client.IClientDaS;
 import com.nali.list.render.s.RenderEzoRedFox;
-import com.nali.small.entity.IMixLe;
-import com.nali.small.entity.Inventory;
-import com.nali.small.entity.memo.client.ClientSleInv;
-import com.nali.small.entity.memo.client.box.mix.MixBoxSle;
+import com.nali.small.entity.IMixE;
+import com.nali.small.entity.IMixESoundDa;
+import com.nali.small.entity.inv.InvLe;
+import com.nali.small.entity.memo.client.ClientLeInv;
+import com.nali.small.entity.memo.client.IClientERsInv;
+import com.nali.small.entity.memo.client.IClientESound;
+import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
+import com.nali.small.entity.memo.client.ci.MixCIE;
 import com.nali.small.entity.memo.client.render.mix.MixRenderSleInv;
 import com.nali.sound.ISoundDaLe;
 import com.nali.sound.NoSound;
@@ -19,110 +23,129 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static com.nali.list.data.WildData.MODEL_STEP;
 
 @SideOnly(Side.CLIENT)
-public class ClientEzoRedFox<RC extends IClientDaS, R extends RenderEzoRedFox<E, I, MB, MR, ?, SD, BD, RC>, SD extends ISoundDaLe, BD extends IBothDaNe & IBothDaSn, E extends EntityLivingBase, I extends IMixLe<SD, BD, E>, MB extends MixBoxSle<RC, R, SD, BD, E, I, MR, ?>, MR extends MixRenderSleInv<RC, R, SD, BD, E, I, MB, ?>> extends ClientSleInv<RC, R, SD, BD, E, I, MB, MR>
+public class ClientEzoRedFox
+<
+	IE extends InvLe,
+	RC extends IClientDaS,
+	R extends RenderEzoRedFox<IE, E, I, MC, MB, MR, ?, SD, BD, RC>,
+	SD extends ISoundDaLe,
+	BD extends IBothDaNe & IBothDaSn,
+	E extends EntityLivingBase,
+	I extends IMixE<BD, E> & IMixESoundDa<SD>,
+	MC extends MixCIE<RC, R, BD, E, I, MB, MR, ?>,
+	MB extends MixBoxSleInv<RC, R, SD, BD, E, I, MC, MR, ?>,
+	MR extends MixRenderSleInv<IE, RC, R, SD, BD, E, I, MC, MB, ?>
+> extends ClientLeInv<IE, RC, R, SD, BD, E, I, MC, MB, MR> implements IClientERsInv, IClientESound
 {
-//    @SideOnly(Side.CLIENT)
-    public static int[] IV_INT_ARRAY = new int[]
-    {
-        2/*+0*/ + MODEL_STEP, 8760,
-        2/*+0*/ + MODEL_STEP, 10195,
-        4/*+0*/ + MODEL_STEP, 1525,
-        2/*+0*/ + MODEL_STEP, 5390,
-        2/*+0*/ + MODEL_STEP, 14181,
-        11/*+0*/ + MODEL_STEP, 961
-    };
-//    @SideOnly(Side.CLIENT)
-    public static float[] ROTATION_FLOAT_ARRAY = new float[]
-    {
-        0.0F, 0.0F,
-        0.0F, 0.0F
-    };
-//    @SideOnly(Side.CLIENT)
-    public static float[] TRANSFORM_FLOAT_ARRAY = new float[]
-    {
-        0.0F, -0.55F * 0.5F, 0.0F,
-        0.0F, -1.0F * 0.5F, 0.1F * 0.5F,
-        0.0F, -1.2F * 0.5F, 0.14F * 0.5F,
-        0.0F, 0.0F, 0.14F * 0.5F
-    };
+	public Sound sound = new NoSound();
+//	@SideOnly(Side.CLIENT)
+	public static int[] IV_INT_ARRAY = new int[]
+	{
+		2/*+0*/ + MODEL_STEP, 8760,
+		2/*+0*/ + MODEL_STEP, 10195,
+		4/*+0*/ + MODEL_STEP, 1525,
+		2/*+0*/ + MODEL_STEP, 5390,
+		2/*+0*/ + MODEL_STEP, 14181,
+		11/*+0*/ + MODEL_STEP, 961
+	};
+//	@SideOnly(Side.CLIENT)
+	public static float[] ROTATION_FLOAT_ARRAY = new float[]
+	{
+		0.0F, 0.0F,
+		0.0F, 0.0F
+	};
+//	@SideOnly(Side.CLIENT)
+	public static float[] TRANSFORM_FLOAT_ARRAY = new float[]
+	{
+		0.0F, -0.55F * 0.5F, 0.0F,
+		0.0F, -1.0F * 0.5F, 0.1F * 0.5F,
+		0.0F, -1.2F * 0.5F, 0.14F * 0.5F,
+		0.0F, 0.0F, 0.14F * 0.5F
+	};
 
-//    @SideOnly(Side.CLIENT)
-    public int eyes_tick = 0;
+//	@SideOnly(Side.CLIENT)
+	public int eyes_tick = 0;
 
-    public ClientEzoRedFox(I i, R r, Inventory inventory)
-    {
-        super(i, r, inventory);
-    }
+	public ClientEzoRedFox(I i, R r)
+	{
+		super(i, r);
+	}
 
-    @Override
-    public void updateClient()
-    {
-        E e = this.i.getE();
-        int frame = this.r.frame_int_array[0];
+	@Override
+	public byte[] getCI()
+	{
+		return ;
+	}
 
-        if (e.ticksExisted % 100 == 0)
-        {
-            this.r.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
-            this.r.model_byte_array[9 / 8] |= 2;//Math.pow(2, 9 % 8)
-            this.eyes_tick = 20;
-        }
-        else if (--this.eyes_tick <= 0)
-        {
-            this.r.model_byte_array[8 / 8] |= 1;//Math.pow(2, 8 % 8)
-            this.r.model_byte_array[9 / 8] &= 253;//255 - Math.pow(2, 9 % 8)
-        }
+	@Override
+	public void updateClient()
+	{
+		E e = this.i.getE();
+		int frame = this.r.frame_int_array[0];
 
-        float scale = this.r.scale;
-        BD bd = this.i.getBD();
-        if ((frame > 241 && frame < 595) || (frame > 594 && frame < 800))
-        {
-            e.width = bd.Width() * scale;
-            e.height = 0.7F * scale;
-        }
-        else
-        {
-            e.width = bd.Width() * scale;
-            e.height = bd.Height() * scale;
-        }
+		if (e.ticksExisted % 100 == 0)
+		{
+			this.r.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
+			this.r.model_byte_array[9 / 8] |= 2;//Math.pow(2, 9 % 8)
+			this.eyes_tick = 20;
+		}
+		else if (--this.eyes_tick <= 0)
+		{
+			this.r.model_byte_array[8 / 8] |= 1;//Math.pow(2, 8 % 8)
+			this.r.model_byte_array[9 / 8] &= 253;//255 - Math.pow(2, 9 % 8)
+		}
 
-//        skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
-//        skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
-//        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
-        this.r.model_byte_array[0] &= 223 & 191 & 127;
-    }
+		float scale = this.r.scale;
+		BD bd = this.i.getBD();
+		if ((frame > 241 && frame < 595) || (frame > 594 && frame < 800))
+		{
+			e.width = bd.Width() * scale;
+			e.height = 0.7F * scale;
+		}
+		else
+		{
+			e.width = bd.Width() * scale;
+			e.height = bd.Height() * scale;
+		}
 
-    @Override
-    public void initFakeFrame()
-    {
-        this.r.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
-//        skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
-//        skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
-//        skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
-        this.r.model_byte_array[0] &= 223 & 191 & 127;
-        super.initFakeFrame();
-    }
+//		skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
+//		skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
+//		skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+		this.r.model_byte_array[0] &= 223 & 191 & 127;
+	}
 
-    @Override
-    public Sound createSound()
-    {
-        return new NoSound();
-    }
+	@Override
+	public void initFakeFrame()
+	{
+		this.r.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
+//		skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
+//		skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
+//		skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+		this.r.model_byte_array[0] &= 223 & 191 & 127;
+		super.initFakeFrame();
+	}
 
-    @Override
-    public int[] getIVIntArray()
-    {
-        return IV_INT_ARRAY;
-    }
+	@Override
+	public Sound getSound()
+	{
+		return this.sound;
+	}
 
-    @Override
-    public float[] getRotationFloatArray()
-    {
-        return ROTATION_FLOAT_ARRAY;
-    }
+	@Override
+	public int[] getIVIntArray()
+	{
+		return IV_INT_ARRAY;
+	}
 
-    @Override
-    public float[] getTransformFloatArray()
-    {
-        return TRANSFORM_FLOAT_ARRAY;
-    }
+	@Override
+	public float[] getRotationFloatArray()
+	{
+		return ROTATION_FLOAT_ARRAY;
+	}
+
+	@Override
+	public float[] getTransformFloatArray()
+	{
+		return TRANSFORM_FLOAT_ARRAY;
+	}
 }

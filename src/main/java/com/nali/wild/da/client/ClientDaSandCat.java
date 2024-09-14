@@ -9,23 +9,23 @@ import static com.nali.list.data.WildData.*;
 @SideOnly(Side.CLIENT)
 public class ClientDaSandCat implements IClientDaS
 {
-//    public static IClientDaS ICLIENTDAS = new ClientDaSandCat();
+//	public static IClientDaS ICLIENTDAS = new ClientDaSandCat();
 
-    @Override
-    public int FrameID()
-    {
-        return FRAME_STEP + 1;
-    }
+	@Override
+	public int FrameID()
+	{
+		return FRAME_STEP + 1;
+	}
 
-    @Override
-    public int StartPart()
-    {
-        return MODEL_STEP + 13;
-    }
+	@Override
+	public int StartPart()
+	{
+		return MODEL_STEP + 13;
+	}
 
-    @Override
-    public int EndPart()
-    {
-        return MODEL_STEP + 26;
-    }
+	@Override
+	public int EndPart()
+	{
+		return MODEL_STEP + 26;
+	}
 }

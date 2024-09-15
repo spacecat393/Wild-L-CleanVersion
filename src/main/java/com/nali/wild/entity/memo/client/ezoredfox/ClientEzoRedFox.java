@@ -3,6 +3,8 @@ package com.nali.wild.entity.memo.client.ezoredfox;
 import com.nali.da.IBothDaNe;
 import com.nali.da.IBothDaSn;
 import com.nali.da.client.IClientDaS;
+import com.nali.list.entity.ci.CIEFrame;
+import com.nali.list.entity.ci.CIESound;
 import com.nali.list.render.s.RenderEzoRedFox;
 import com.nali.small.entity.IMixE;
 import com.nali.small.entity.IMixESoundDa;
@@ -37,7 +39,12 @@ public class ClientEzoRedFox
 	MR extends MixRenderSleInv<IE, RC, R, SD, BD, E, I, MC, MB, ?>
 > extends ClientLeInv<IE, RC, R, SD, BD, E, I, MC, MB, MR> implements IClientERsInv, IClientESound
 {
-	public Sound sound = new NoSound();
+	public static byte[] CI_BYTE_ARRAY =
+	{
+		CIEFrame.ID,
+		CIESound.ID
+	};
+
 //	@SideOnly(Side.CLIENT)
 	public static int[] IV_INT_ARRAY = new int[]
 	{
@@ -63,66 +70,11 @@ public class ClientEzoRedFox
 		0.0F, 0.0F, 0.14F * 0.5F
 	};
 
-//	@SideOnly(Side.CLIENT)
-	public int eyes_tick = 0;
+	public Sound sound = new NoSound();
 
 	public ClientEzoRedFox(I i, R r)
 	{
 		super(i, r);
-	}
-
-	@Override
-	public byte[] getCI()
-	{
-		return ;
-	}
-
-	@Override
-	public void updateClient()
-	{
-		E e = this.i.getE();
-		int frame = this.r.frame_int_array[0];
-
-		if (e.ticksExisted % 100 == 0)
-		{
-			this.r.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
-			this.r.model_byte_array[9 / 8] |= 2;//Math.pow(2, 9 % 8)
-			this.eyes_tick = 20;
-		}
-		else if (--this.eyes_tick <= 0)
-		{
-			this.r.model_byte_array[8 / 8] |= 1;//Math.pow(2, 8 % 8)
-			this.r.model_byte_array[9 / 8] &= 253;//255 - Math.pow(2, 9 % 8)
-		}
-
-		float scale = this.r.scale;
-		BD bd = this.i.getBD();
-		if ((frame > 241 && frame < 595) || (frame > 594 && frame < 800))
-		{
-			e.width = bd.Width() * scale;
-			e.height = 0.7F * scale;
-		}
-		else
-		{
-			e.width = bd.Width() * scale;
-			e.height = bd.Height() * scale;
-		}
-
-//		skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
-//		skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
-//		skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
-		this.r.model_byte_array[0] &= 223 & 191 & 127;
-	}
-
-	@Override
-	public void initFakeFrame()
-	{
-		this.r.model_byte_array[8 / 8] &= 254;//255 - Math.pow(2, 8 % 8)
-//		skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)
-//		skinningrender.model_byte_array[6 / 8] &= 191;//255 - Math.pow(2, 6 % 8)
-//		skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
-		this.r.model_byte_array[0] &= 223 & 191 & 127;
-		super.initFakeFrame();
 	}
 
 	@Override
@@ -147,5 +99,11 @@ public class ClientEzoRedFox
 	public float[] getTransformFloatArray()
 	{
 		return TRANSFORM_FLOAT_ARRAY;
+	}
+
+	@Override
+	public byte[] getCI()
+	{
+		return CI_BYTE_ARRAY;
 	}
 }

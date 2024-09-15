@@ -4,10 +4,12 @@ import com.nali.da.IBothDaNe;
 import com.nali.list.render.s.RenderSandCat;
 import com.nali.small.entity.EntityLeInv;
 import com.nali.small.entity.IMixESoundDa;
-import com.nali.small.entity.Inventory;
-import com.nali.small.entity.memo.client.box.mix.MixBoxSle;
+import com.nali.small.entity.inv.InvLe;
+import com.nali.small.entity.memo.IBothLeInv;
+import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.wild.da.both.BothDaSandCat;
 import com.nali.wild.entity.memo.client.sandcat.ClientSandCat;
+import com.nali.wild.entity.memo.client.sandcat.MixCISandCat;
 import com.nali.wild.entity.memo.client.sandcat.MixRenderSandCat;
 import com.nali.wild.entity.memo.server.sandcat.MixSISandCat;
 import com.nali.wild.entity.memo.server.sandcat.ServerSandCat;
@@ -28,6 +30,8 @@ public class WildSandCat extends EntityLeInv implements IMixESoundDa
 	public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[BothDaSandCat.MAX_SYNC];
 	public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[BothDaSandCat.MAX_FRAME];
 	public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
+
+	public IBothLeInv ibothleinv;
 
 	static
 	{
@@ -95,9 +99,9 @@ public class WildSandCat extends EntityLeInv implements IMixESoundDa
 	}
 
 	@Override
-	public byte[] getAI()
+	public byte[] getSI()
 	{
-		return MixSISandCat.AI_BYTE_ARRAY;
+		return MixSISandCat.SI_BYTE_ARRAY;
 	}
 
 	@Override
@@ -123,21 +127,26 @@ public class WildSandCat extends EntityLeInv implements IMixESoundDa
 	public void newC()
 	{
 		RenderSandCat r = new RenderSandCat(RenderSandCat.ICLIENTDAS, BothDaSandCat.IBOTHDASN);
-		ClientSandCat c = new ClientSandCat(this, r, new Inventory(1));
-		c.mb = new MixBoxSle(c);
+		ClientSandCat c = new ClientSandCat(this, r);
+		MixCISandCat mc = new MixCISandCat(c);
+		c.mc = mc;
+		mc.init();
+		c.mb = new MixBoxSleInv(c);
 		c.mr = new MixRenderSandCat(c);
 		r.c = c;
+		c.ie = new InvLe();
 		this.ibothleinv = c;
 	}
 
 	@Override
 	public void newS()
 	{
-		ServerSandCat s = new ServerSandCat(this, new Inventory(1));
-		MixSISandCat a = new MixSISandCat(s);
-		s.a = a;
-		a.init();
+		ServerSandCat s = new ServerSandCat(this);
+		MixSISandCat ms = new MixSISandCat(s);
+		s.ms = ms;
+		ms.init();
 		s.initFrame();
+		s.ie = new InvLe();
 		this.ibothleinv = s;
 	}
 
@@ -151,6 +160,22 @@ public class WildSandCat extends EntityLeInv implements IMixESoundDa
 	public Object getSD()
 	{
 		return SoundDaSandCat.ISOUNDDALE;
+	}
+
+	@Override
+	public IBothLeInv getB()
+	{
+		return this.ibothleinv;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public static ClientSandCat getC()
+	{
+		RenderSandCat r = new RenderSandCat(RenderSandCat.ICLIENTDAS, BothDaSandCat.IBOTHDASN);
+		ClientSandCat c = new ClientSandCat(null, r);
+		r.c = c;
+		c.mr = new MixRenderSandCat(c);
+		return c;
 	}
 
 //	@Override

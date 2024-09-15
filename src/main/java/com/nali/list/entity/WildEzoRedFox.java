@@ -4,10 +4,12 @@ import com.nali.da.IBothDaNe;
 import com.nali.list.render.s.RenderEzoRedFox;
 import com.nali.small.entity.EntityLeInv;
 import com.nali.small.entity.IMixESoundDa;
-import com.nali.small.entity.Inventory;
-import com.nali.small.entity.memo.client.box.mix.MixBoxSle;
+import com.nali.small.entity.inv.InvLe;
+import com.nali.small.entity.memo.IBothLeInv;
+import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.wild.da.both.BothDaEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.ClientEzoRedFox;
+import com.nali.wild.entity.memo.client.ezoredfox.MixCIEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixRenderEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.MixSIEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.ServerEzoRedFox;
@@ -28,6 +30,8 @@ public class WildEzoRedFox extends EntityLeInv implements IMixESoundDa
 	public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[BothDaEzoRedFox.MAX_SYNC];
 	public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[BothDaEzoRedFox.MAX_FRAME];
 	public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
+
+	public IBothLeInv ibothleinv;
 
 	static
 	{
@@ -94,9 +98,9 @@ public class WildEzoRedFox extends EntityLeInv implements IMixESoundDa
 	}
 
 	@Override
-	public byte[] getAI()
+	public byte[] getSI()
 	{
-		return MixSIEzoRedFox.AI_BYTE_ARRAY;
+		return MixSIEzoRedFox.SI_BYTE_ARRAY;
 	}
 
 	@Override
@@ -122,21 +126,26 @@ public class WildEzoRedFox extends EntityLeInv implements IMixESoundDa
 	public void newC()
 	{
 		RenderEzoRedFox r = new RenderEzoRedFox(RenderEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
-		ClientEzoRedFox c = new ClientEzoRedFox(this, r, new Inventory(1));
-		c.mb = new MixBoxSle(c);
+		ClientEzoRedFox c = new ClientEzoRedFox(this, r);
+		MixCIEzoRedFox mc = new MixCIEzoRedFox(c);
+		c.mc = mc;
+		mc.init();
+		c.mb = new MixBoxSleInv(c);
 		c.mr = new MixRenderEzoRedFox(c);
 		r.c = c;
+		c.ie = new InvLe();
 		this.ibothleinv = c;
 	}
 
 	@Override
 	public void newS()
 	{
-		ServerEzoRedFox s = new ServerEzoRedFox(this, new Inventory(1));
-		MixSIEzoRedFox a = new MixSIEzoRedFox(s);
-		s.a = a;
-		a.init();
+		ServerEzoRedFox s = new ServerEzoRedFox(this);
+		MixSIEzoRedFox ms = new MixSIEzoRedFox(s);
+		s.ms = ms;
+		ms.init();
 		s.initFrame();
+		s.ie = new InvLe();
 		this.ibothleinv = s;
 	}
 
@@ -150,5 +159,21 @@ public class WildEzoRedFox extends EntityLeInv implements IMixESoundDa
 	public Object getSD()
 	{
 		return SoundDaEzoRedFox.ISOUNDDALE;
+	}
+
+	@Override
+	public IBothLeInv getB()
+	{
+		return this.ibothleinv;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public static ClientEzoRedFox getC()
+	{
+		RenderEzoRedFox r = new RenderEzoRedFox(RenderEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
+		ClientEzoRedFox c = new ClientEzoRedFox(null, r);
+		r.c = c;
+		c.mr = new MixRenderEzoRedFox(c);
+		return c;
 	}
 }

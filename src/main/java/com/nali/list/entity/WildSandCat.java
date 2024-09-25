@@ -111,7 +111,7 @@ public class WildSandCat extends EntityLeInv implements IMixESoundDa
 	public static ClientSandCat getC()
 	{
 		RenderSandCat r = new RenderSandCat(RenderSandCat.ICLIENTDAS, BothDaSandCat.IBOTHDASN);
-		ClientSandCat c = new ClientSandCat(null, r);
+		ClientSandCat c = new ClientSandCat(r);
 		r.c = c;
 		c.mr = new MixRenderSandCat(c);
 		return c;

@@ -69,6 +69,11 @@ public class ClientEzoRedFox
 		super(i, r);
 	}
 
+	public ClientEzoRedFox(R r)
+	{
+		super(r);
+	}
+
 	@Override
 	public Sound getSound()
 	{

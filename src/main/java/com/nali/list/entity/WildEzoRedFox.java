@@ -111,7 +111,7 @@ public class WildEzoRedFox extends EntityLeInv implements IMixESoundDa
 	public static ClientEzoRedFox getC()
 	{
 		RenderEzoRedFox r = new RenderEzoRedFox(RenderEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
-		ClientEzoRedFox c = new ClientEzoRedFox(null, r);
+		ClientEzoRedFox c = new ClientEzoRedFox(r);
 		r.c = c;
 		c.mr = new MixRenderEzoRedFox(c);
 		return c;

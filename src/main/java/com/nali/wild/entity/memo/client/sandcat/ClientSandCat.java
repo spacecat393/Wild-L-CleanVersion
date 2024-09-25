@@ -69,6 +69,11 @@ public class ClientSandCat
 		super(i, r);
 	}
 
+	public ClientSandCat(R r)
+	{
+		super(r);
+	}
+
 	@Override
 	public Sound getSound()
 	{

@@ -6,7 +6,6 @@ import com.nali.list.entity.ci.CIESound;
 import com.nali.list.entity.si.*;
 import com.nali.list.render.s.RenderEzoRedFox;
 import com.nali.small.entity.EntityLeInv;
-import com.nali.small.entity.IMixESoundDa;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.IBothLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
@@ -16,7 +15,6 @@ import com.nali.wild.entity.memo.client.ezoredfox.MixCIEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixRenderEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.MixSIEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.ServerEzoRedFox;
-import com.nali.wild.entity.sound.SoundDaEzoRedFox;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -25,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WildEzoRedFox extends EntityLeInv implements IMixESoundDa
+public class WildEzoRedFox extends EntityLeInv
 {
 	public static int eggPrimary = 0xffb56d;
 	public static int eggSecondary = 0xc9453d;
@@ -220,12 +218,6 @@ public class WildEzoRedFox extends EntityLeInv implements IMixESoundDa
 	public IBothDaNe getBD()
 	{
 		return BothDaEzoRedFox.IBOTHDASN;
-	}
-
-	@Override
-	public Object getSD()
-	{
-		return SoundDaEzoRedFox.ISOUNDDALE;
 	}
 
 	@Override

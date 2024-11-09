@@ -6,7 +6,6 @@ import com.nali.list.entity.ci.CIESound;
 import com.nali.list.entity.si.*;
 import com.nali.list.render.s.RenderSandCat;
 import com.nali.small.entity.EntityLeInv;
-import com.nali.small.entity.IMixESoundDa;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.IBothLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
@@ -16,7 +15,6 @@ import com.nali.wild.entity.memo.client.sandcat.MixCISandCat;
 import com.nali.wild.entity.memo.client.sandcat.MixRenderSandCat;
 import com.nali.wild.entity.memo.server.sandcat.MixSISandCat;
 import com.nali.wild.entity.memo.server.sandcat.ServerSandCat;
-import com.nali.wild.entity.sound.SoundDaSandCat;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -25,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WildSandCat extends EntityLeInv implements IMixESoundDa
+public class WildSandCat extends EntityLeInv
 {
 	public static int eggPrimary = 0xffebc7;
 	public static int eggSecondary = 0x614c41;
@@ -220,12 +218,6 @@ public class WildSandCat extends EntityLeInv implements IMixESoundDa
 	public IBothDaNe getBD()
 	{
 		return BothDaSandCat.IBOTHDASN;
-	}
-
-	@Override
-	public Object getSD()
-	{
-		return SoundDaSandCat.ISOUNDDALE;
 	}
 
 	@Override

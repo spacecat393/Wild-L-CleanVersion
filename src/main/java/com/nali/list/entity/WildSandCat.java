@@ -74,7 +74,6 @@ public class WildSandCat extends EntityLeInv
 
 			SIEArea.ID,
 			SIEOwner.ID,
-			SIEInvOpenInv.ID,
 			SILeEat.ID,
 
 			SIEPat.ID,

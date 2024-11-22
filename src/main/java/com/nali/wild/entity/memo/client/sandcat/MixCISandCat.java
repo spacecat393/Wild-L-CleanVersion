@@ -1,13 +1,12 @@
 package com.nali.wild.entity.memo.client.sandcat;
 
-import com.nali.da.IBothDaNe;
-import com.nali.da.IBothDaSn;
-import com.nali.da.client.IClientDaS;
-import com.nali.list.render.s.RenderSandCat;
+import com.nali.list.da.BothDaSandCat;
+import com.nali.list.render.RenderSandCat;
 import com.nali.small.entity.IMixE;
+import com.nali.small.entity.IMixES;
+import com.nali.small.entity.IMixESInv;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.client.ClientLeInv;
-import com.nali.small.entity.memo.client.IClientERsInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.small.entity.memo.client.ci.MixCIE;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,15 +17,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class MixCISandCat
 <
 	IE extends InvLe,
-	RC extends IClientDaS,
-	R extends RenderSandCat<IE, E, I, ?, MB, MR, C, BD, RC>,
-	BD extends IBothDaNe & IBothDaSn,
+	R extends RenderSandCat<IE, E, I, ?, MB, MR, C>,
 	E extends EntityLivingBase,
-	I extends IMixE<BD, E>,
-	MB extends MixBoxSleInv<RC, R, BD, E, I, ?, MR, C>,
-	MR extends MixRenderSandCat<IE, RC, R, BD, E, I, ?, MB, C>,
-	C extends ClientLeInv<IE, RC, R, BD, E, I, ?, MB, MR> & IClientERsInv
-> extends MixCIE<RC, R, BD, E, I, MB, MR, C>
+	I extends IMixE<BothDaSandCat, E> & IMixES & IMixESInv,
+	MB extends MixBoxSleInv<BothDaSandCat, R, E, I, ?, MR, C>,
+	MR extends MixRenderSandCat<IE, BothDaSandCat, R, E, I, ?, MB, C>,
+	C extends ClientLeInv<IE, BothDaSandCat, R, E, I, ?, MB, MR>
+> extends MixCIE<BothDaSandCat, R, E, I, MB, MR, C>
 {
 	public int eyes_tick = 0;
 
@@ -56,10 +53,9 @@ public class MixCISandCat
 		}
 
 		float scale = r.scale;
-		BD bd = i.getBD();
 		if (frame > 1043 && frame < 1364)
 		{
-			e.width = bd.Width() * scale;
+			e.width = BothDaSandCat.IDA.E_Width() * scale;
 			e.height = 0.7F * scale;
 		}
 //		else if (frame >  && frame < )
@@ -69,8 +65,8 @@ public class MixCISandCat
 //		}
 		else
 		{
-			e.width = bd.Width() * scale;
-			e.height = bd.Height() * scale;
+			e.width = BothDaSandCat.IDA.E_Width() * scale;
+			e.height = BothDaSandCat.IDA.E_Height() * scale;
 		}
 
 		r.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)

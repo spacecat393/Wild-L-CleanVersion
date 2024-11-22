@@ -1,17 +1,18 @@
 package com.nali.wild.entity.memo.server.ezoredfox;
 
+import com.nali.da.IBothDaE;
 import com.nali.list.entity.si.*;
 import com.nali.small.entity.EntityLeInv;
 import com.nali.small.entity.IMixE;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.server.ServerLeInv;
 import com.nali.small.entity.memo.server.si.MixSIEInv;
-import com.nali.wild.da.both.BothDaEzoRedFox;
+import com.nali.list.da.BothDaEzoRedFox;
 
 public class MixSIEzoRedFox
 <
 	IE extends InvLe,
-	BD extends BothDaEzoRedFox,
+	BD extends IBothDaE,
 	E extends EntityLeInv,
 	I extends IMixE<BD, E>,
 	S extends ServerLeInv<IE, BD, E, I, ?>

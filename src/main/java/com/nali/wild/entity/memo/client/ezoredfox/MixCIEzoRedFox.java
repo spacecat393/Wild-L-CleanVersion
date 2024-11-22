@@ -1,13 +1,12 @@
 package com.nali.wild.entity.memo.client.ezoredfox;
 
-import com.nali.da.IBothDaNe;
-import com.nali.da.IBothDaSn;
-import com.nali.da.client.IClientDaS;
-import com.nali.list.render.s.RenderEzoRedFox;
+import com.nali.list.da.BothDaEzoRedFox;
+import com.nali.list.render.RenderEzoRedFox;
 import com.nali.small.entity.IMixE;
+import com.nali.small.entity.IMixES;
+import com.nali.small.entity.IMixESInv;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.client.ClientLeInv;
-import com.nali.small.entity.memo.client.IClientERsInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.small.entity.memo.client.ci.MixCIE;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,15 +17,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class MixCIEzoRedFox
 <
 	IE extends InvLe,
-	RC extends IClientDaS,
-	R extends RenderEzoRedFox<IE, E, I, ?, MB, MR, C, BD, RC>,
-	BD extends IBothDaNe & IBothDaSn,
+	R extends RenderEzoRedFox<IE, E, I, ?, MB, MR, C>,
 	E extends EntityLivingBase,
-	I extends IMixE<BD, E>,
-	MB extends MixBoxSleInv<RC, R, BD, E, I, ?, MR, C>,
-	MR extends MixRenderEzoRedFox<IE, RC, R, BD, E, I, ?, MB, C>,
-	C extends ClientLeInv<IE, RC, R, BD, E, I, ?, MB, MR> & IClientERsInv
-> extends MixCIE<RC, R, BD, E, I, MB, MR, C>
+	I extends IMixE<BothDaEzoRedFox, E> & IMixES & IMixESInv,
+	MB extends MixBoxSleInv<BothDaEzoRedFox, R, E, I, ?, MR, C>,
+	MR extends MixRenderEzoRedFox<IE, BothDaEzoRedFox, R, E, I, ?, MB, C>,
+	C extends ClientLeInv<IE, BothDaEzoRedFox, R, E, I, ?, MB, MR>
+> extends MixCIE<BothDaEzoRedFox, R, E, I, MB, MR, C>
 {
 	public int eyes_tick = 0;
 
@@ -56,16 +53,15 @@ public class MixCIEzoRedFox
 		}
 
 		float scale = r.scale;
-		BD bd = i.getBD();
 		if ((frame > 241 && frame < 595) || (frame > 594 && frame < 800))
 		{
-			e.width = bd.Width() * scale;
+			e.width = BothDaEzoRedFox.IDA.E_Width() * scale;
 			e.height = 0.7F * scale;
 		}
 		else
 		{
-			e.width = bd.Width() * scale;
-			e.height = bd.Height() * scale;
+			e.width = BothDaEzoRedFox.IDA.E_Width() * scale;
+			e.height = BothDaEzoRedFox.IDA.E_Height() * scale;
 		}
 
 //		skinningrender.model_byte_array[5 / 8] &= 223;//255 - Math.pow(2, 5 % 8)

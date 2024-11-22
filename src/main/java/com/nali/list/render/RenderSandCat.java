@@ -1,17 +1,14 @@
-package com.nali.list.render.s;
+package com.nali.list.render;
 
-import com.nali.da.IBothDaNe;
-import com.nali.da.IBothDaSn;
-import com.nali.da.client.IClientDaS;
+import com.nali.list.da.BothDaSandCat;
 import com.nali.small.entity.IMixE;
+import com.nali.small.entity.IMixES;
+import com.nali.small.entity.IMixESInv;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.client.ClientLeInv;
-import com.nali.small.entity.memo.client.IClientERsInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.small.entity.memo.client.ci.MixCIE;
 import com.nali.small.entity.memo.client.render.mix.MixRenderSe;
-import com.nali.wild.da.both.BothDaSandCat;
-import com.nali.wild.da.client.ClientDaSandCat;
 import com.nali.wild.render.WildRenderSe;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,25 +21,19 @@ public class RenderSandCat
 <
 	IE extends InvLe,
 	E extends EntityLivingBase,
-	I extends IMixE<BD, E>,
-	MC extends MixCIE<RC, ?, BD, E, I, MB, MR, C>,
-	MB extends MixBoxSleInv<RC, ?, BD, E, I, MC, MR, C>,
-	MR extends MixRenderSe<RC, ?, BD, E, I, MC, MB, C>,
-	C extends ClientLeInv<IE, RC, ?, BD, E, I, MC, MB, MR> & IClientERsInv,
-	BD extends IBothDaNe & IBothDaSn,
-	RC extends IClientDaS
-> extends WildRenderSe<E, I, MC, MB, MR, C, BD, RC>
+	I extends IMixE<BothDaSandCat, E> & IMixES & IMixESInv,
+	MC extends MixCIE<BothDaSandCat, ?, E, I, MB, MR, C>,
+	MB extends MixBoxSleInv<BothDaSandCat, ?, E, I, MC, MR, C>,
+	MR extends MixRenderSe<BothDaSandCat, ?, E, I, MC, MB, C>,
+	C extends ClientLeInv<IE, BothDaSandCat, ?, E, I, MC, MB, MR>
+> extends WildRenderSe<E, I, MC, MB, MR, C, BothDaSandCat>
 {
-	//	public static int ID;
-//	public static DataLoader DATALOADER = RenderHelper.DATALOADER;
-	public static IClientDaS ICLIENTDAS = new ClientDaSandCat();
-	public static IBothDaSn IBOTHDASN = BothDaSandCat.IBOTHDASN;
 	public byte[] model_byte_array;
 
-	public RenderSandCat(RC rc, BD bd)
+	public RenderSandCat()
 	{
-		super(rc, bd);
-		this.model_byte_array = new byte[(int)Math.ceil((rc.EndPart() - rc.StartPart()) / 8.0D)];
+		super(BothDaSandCat.IDA);
+		this.model_byte_array = new byte[(int)Math.ceil((BothDaSandCat.IDA.O_EndPart() - BothDaSandCat.IDA.O_StartPart()) / 8.0D)];
 //		this.texture_index_int_array[0] = 5;
 //		this.texture_index_int_array[1] = 5;
 //		this.texture_index_int_array[2] = 6;
@@ -62,7 +53,7 @@ public class RenderSandCat
 	@Override
 	public void draw(int index)
 	{
-		int i = index - this.rc.StartPart();
+		int i = index - BothDaSandCat.IDA.O_StartPart();
 		if ((this.model_byte_array[i / 8] >> i % 8 & 1) == 1)
 		{
 			super.draw(index);
@@ -72,7 +63,7 @@ public class RenderSandCat
 	@Override
 	public void drawLater(int index)
 	{
-		int i = index - this.rc.StartPart();
+		int i = index - BothDaSandCat.IDA.O_StartPart();
 		if ((this.model_byte_array[i / 8] >> i % 8 & 1) == 1)
 		{
 			super.drawLater(index);

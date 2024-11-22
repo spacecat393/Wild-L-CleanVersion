@@ -1,7 +1,10 @@
 package com.nali.wild.entity.memo.server.sandcat;
 
-import com.nali.da.IBothDaNe;
-import com.nali.da.IBothDaSn;
+import com.nali.da.IBothDaE;
+import com.nali.da.IBothDaNE;
+import com.nali.list.entity.ci.CIESound;
+import com.nali.list.network.message.ClientMessage;
+import com.nali.network.NetworkRegistry;
 import com.nali.small.entity.EntityLeInv;
 import com.nali.small.entity.IMixE;
 import com.nali.small.entity.inv.InvLe;
@@ -22,11 +25,13 @@ import com.nali.small.entity.memo.server.si.frame.tloop.FrameSleTLoopAttackWalk;
 import com.nali.small.entity.memo.server.si.frame.tloop.FrameSleTLoopWalk;
 import com.nali.small.entity.memo.server.si.frame.tloopinset.FrameSTLoopInSetSit;
 import com.nali.small.entity.memo.server.si.frame.tloopinset.FrameSleTLoopInSetDie;
+import com.nali.system.bytes.ByteWriter;
+import net.minecraft.util.DamageSource;
 
 public class ServerSandCat
 <
 	IE extends InvLe,
-	BD extends IBothDaNe & IBothDaSn,
+	BD extends IBothDaE & IBothDaNE,
 	E extends EntityLeInv,
 	I extends IMixE<BD, E>,
 	MS extends MixSIE<BD, E, I, ?>
@@ -230,5 +235,23 @@ public class ServerSandCat
 	public int[][] getFrame2DIntArray()
 	{
 		return FRAME_INT_2D_ARRAY;
+	}
+
+	@Override
+	public void getHurtSound(DamageSource damagesource)
+	{
+		byte[] byte_array = new byte[1 + 8 + 1 + 4];
+		this.setCCI(byte_array, CIESound.ID);
+		ByteWriter.set(byte_array, this.i.getBD().NE_HURT(), 1 + 8 + 1);
+		NetworkRegistry.I.sendToAll(new ClientMessage(byte_array));
+	}
+
+	@Override
+	public void getDeathSound()
+	{
+		byte[] byte_array = new byte[1 + 8 + 1 + 4];
+		this.setCCI(byte_array, CIESound.ID);
+		ByteWriter.set(byte_array, this.i.getBD().NE_DEATH(), 1 + 8 + 1);
+		NetworkRegistry.I.sendToAll(new ClientMessage(byte_array));
 	}
 }

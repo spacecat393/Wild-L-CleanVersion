@@ -1,15 +1,19 @@
 package com.nali.list.entity;
 
-import com.nali.da.IBothDaNe;
+import com.nali.da.IBothDaE;
 import com.nali.list.entity.ci.CIEFrame;
 import com.nali.list.entity.ci.CIESound;
 import com.nali.list.entity.si.*;
-import com.nali.list.render.s.RenderEzoRedFox;
+import com.nali.list.render.RenderEzoRedFox;
+import com.nali.math.M4x4;
+import com.nali.math.Quaternion;
 import com.nali.small.entity.EntityLeInv;
+import com.nali.small.entity.IMixES;
+import com.nali.small.entity.IMixESInv;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.IBothLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
-import com.nali.wild.da.both.BothDaEzoRedFox;
+import com.nali.list.da.BothDaEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.ClientEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixCIEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixRenderEzoRedFox;
@@ -23,7 +27,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WildEzoRedFox extends EntityLeInv
+import static com.nali.list.data.WildData.MODEL_STEP;
+import static com.nali.small.entity.memo.client.render.FRenderSeMath.interpolateRotation;
+
+public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 {
 	public static int eggPrimary = 0xffb56d;
 	public static int eggSecondary = 0xc9453d;
@@ -36,6 +43,28 @@ public class WildEzoRedFox extends EntityLeInv
 	public static byte[] SI_BYTE_ARRAY;
 
 	public IBothLeInv ibothleinv;
+
+	public static int[] IV_INT_ARRAY = new int[]
+	{
+		2/*+0*/ + MODEL_STEP, 8760,
+		2/*+0*/ + MODEL_STEP, 10195,
+		4/*+0*/ + MODEL_STEP, 1525,
+		2/*+0*/ + MODEL_STEP, 5390,
+		2/*+0*/ + MODEL_STEP, 14181,
+		11/*+0*/ + MODEL_STEP, 961
+	};
+	public static float[] ROTATION_FLOAT_ARRAY = new float[]
+	{
+		0.0F, 0.0F,
+		0.0F, 0.0F
+	};
+	public static float[] TRANSFORM_FLOAT_ARRAY = new float[]
+	{
+		0.0F, -0.55F * 0.5F, 0.0F,
+		0.0F, -1.0F * 0.5F, 0.1F * 0.5F,
+		0.0F, -1.2F * 0.5F, 0.14F * 0.5F,
+		0.0F, 0.0F, 0.14F * 0.5F
+	};
 
 	static
 	{
@@ -107,7 +136,7 @@ public class WildEzoRedFox extends EntityLeInv
 	@SideOnly(Side.CLIENT)
 	public static ClientEzoRedFox getC()
 	{
-		RenderEzoRedFox r = new RenderEzoRedFox(RenderEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
+		RenderEzoRedFox r = new RenderEzoRedFox();
 		ClientEzoRedFox c = new ClientEzoRedFox(r);
 		r.c = c;
 		c.mr = new MixRenderEzoRedFox(c);
@@ -152,6 +181,7 @@ public class WildEzoRedFox extends EntityLeInv
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.05D);
+		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(50.0D);
 		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(20.0D);
 	}
 
@@ -189,7 +219,7 @@ public class WildEzoRedFox extends EntityLeInv
 	@Override
 	public void newC()
 	{
-		RenderEzoRedFox r = new RenderEzoRedFox(RenderEzoRedFox.ICLIENTDAS, BothDaEzoRedFox.IBOTHDASN);
+		RenderEzoRedFox r = new RenderEzoRedFox();
 		ClientEzoRedFox c = new ClientEzoRedFox(this, r);
 		MixCIEzoRedFox mc = new MixCIEzoRedFox(c);
 		c.mc = mc;
@@ -214,14 +244,56 @@ public class WildEzoRedFox extends EntityLeInv
 	}
 
 	@Override
-	public IBothDaNe getBD()
+	public IBothDaE getBD()
 	{
-		return BothDaEzoRedFox.IBOTHDASN;
+		return BothDaEzoRedFox.IDA;
 	}
 
 	@Override
 	public IBothLeInv getB()
 	{
 		return this.ibothleinv;
+	}
+
+	@Override
+	public int[] getIVIntArray()
+	{
+		return IV_INT_ARRAY;
+	}
+
+	@Override
+	public float[] getRotationFloatArray()
+	{
+		return ROTATION_FLOAT_ARRAY;
+	}
+
+	@Override
+	public float[] getTransformFloatArray()
+	{
+		return TRANSFORM_FLOAT_ARRAY;
+	}
+
+	@Override
+	public void mulFrame(float[] skinning_float_array, int[] frame_int_array, float partial_ticks)
+	{
+		float head_rot = (float)Math.toRadians(interpolateRotation(this.prevRotationYaw, this.rotationYaw, partial_ticks));
+		float head_pitch = (float)Math.toRadians(this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * partial_ticks);
+		float body_rot = (float)Math.toRadians(interpolateRotation(this.prevRenderYawOffset, this.renderYawOffset, partial_ticks));
+		float net_head_yaw = head_rot - body_rot;
+
+		if (head_pitch > 1.04719755119659774615F)
+		{
+			head_pitch = 1.04719755119659774615F;
+		}
+		else if (head_pitch < -1.04719755119659774615F)
+		{
+			head_pitch = -1.04719755119659774615F;
+		}
+		M4x4 body_m4x4 = new Quaternion(0.0F, 0.0F, body_rot).getM4x4();
+		M4x4 head_m4x4 = new Quaternion(-head_pitch, 0, net_head_yaw).getM4x4();
+
+		head_m4x4.multiply(skinning_float_array, 33*16);
+
+		body_m4x4.multiply(skinning_float_array, 0);
 	}
 }

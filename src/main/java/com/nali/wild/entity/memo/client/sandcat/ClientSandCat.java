@@ -28,11 +28,12 @@ public class ClientSandCat
 	MR extends MixRenderSleInv<IE, BothDaSandCat, R, E, I, MC, MB, ?>
 > extends ClientLeInv<IE, BothDaSandCat, R, E, I, MC, MB, MR> implements IClientESound
 {
-	public SoundE sounde = new SoundE();
+	public SoundE sounde;
 
-	public ClientSandCat(I i, R r)
+	public ClientSandCat(I i, R r, SoundE sounde)
 	{
 		super(i, r);
+		this.sounde = sounde;
 	}
 
 	public ClientSandCat(R r)

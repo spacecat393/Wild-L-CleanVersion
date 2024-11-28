@@ -14,6 +14,7 @@ import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.IBothLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.list.da.BothDaSandCat;
+import com.nali.sound.SoundE;
 import com.nali.wild.entity.memo.client.sandcat.ClientSandCat;
 import com.nali.wild.entity.memo.client.sandcat.MixCISandCat;
 import com.nali.wild.entity.memo.client.sandcat.MixRenderSandCat;
@@ -220,7 +221,7 @@ public class WildSandCat extends EntityLeInv implements IMixES, IMixESInv
 	public void newC()
 	{
 		RenderSandCat r = new RenderSandCat();
-		ClientSandCat c = new ClientSandCat(this, r);
+		ClientSandCat c = new ClientSandCat(this, r, new SoundE());
 		MixCISandCat mc = new MixCISandCat(c);
 		c.mc = mc;
 		mc.init();

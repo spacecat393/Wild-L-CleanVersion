@@ -14,6 +14,7 @@ import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.IBothLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.list.da.BothDaEzoRedFox;
+import com.nali.sound.SoundE;
 import com.nali.wild.entity.memo.client.ezoredfox.ClientEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixCIEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixRenderEzoRedFox;
@@ -220,7 +221,7 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 	public void newC()
 	{
 		RenderEzoRedFox r = new RenderEzoRedFox();
-		ClientEzoRedFox c = new ClientEzoRedFox(this, r);
+		ClientEzoRedFox c = new ClientEzoRedFox(this, r, new SoundE());
 		MixCIEzoRedFox mc = new MixCIEzoRedFox(c);
 		c.mc = mc;
 		mc.init();

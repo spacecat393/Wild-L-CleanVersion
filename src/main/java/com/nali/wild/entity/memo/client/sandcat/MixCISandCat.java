@@ -38,7 +38,7 @@ public class MixCISandCat
 		R r = this.c.r;
 		I i = this.c.i;
 		E e = i.getE();
-		int frame = r.frame_int_array[0];
+		short key = r.key_short_array[0];
 
 		if (e.ticksExisted % 100 == 0)
 		{
@@ -53,12 +53,12 @@ public class MixCISandCat
 		}
 
 		float scale = r.scale;
-		if (frame > 1043 && frame < 1364)
+		if (key > 1043 && key < 1364)
 		{
 			e.width = BothDaSandCat.IDA.E_Width() * scale;
 			e.height = 0.7F * scale;
 		}
-//		else if (frame >  && frame < )
+//		else if (key >  && key < )
 //		{
 //			this.width = 1.5F * scale;
 //			this.height = 0.25F * scale;

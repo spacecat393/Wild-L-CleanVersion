@@ -36,9 +36,9 @@ public class WildSandCat extends EntityLeInv implements IMixES, IMixESInv
 	public static int eggPrimary = 0xffebc7;
 	public static int eggSecondary = 0x614c41;
 
-	public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[BothDaSandCat.MAX_SYNC];
-	public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[BothDaSandCat.MAX_FRAME];
-	public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
+	public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[BothDaSandCat.IDA.E_MaxSync()];
+//	public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[BothDaSandCat.IDA.S_MaxFrame()];
+//	public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 
 	public static byte[] CI_BYTE_ARRAY;
 	public static byte[] SI_BYTE_ARRAY;
@@ -74,15 +74,15 @@ public class WildSandCat extends EntityLeInv implements IMixES, IMixESInv
 			BYTE_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildSandCat.class, DataSerializers.BYTE);
 		}
 
-		for (int i = 0; i < INTEGER_DATAPARAMETER_ARRAY.length; ++i)
-		{
-			INTEGER_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildSandCat.class, DataSerializers.VARINT);
-		}
-
-		for (int i = 0; i < FLOAT_DATAPARAMETER_ARRAY.length; ++i)
-		{
-			FLOAT_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildSandCat.class, DataSerializers.FLOAT);
-		}
+//		for (int i = 0; i < INTEGER_DATAPARAMETER_ARRAY.length; ++i)
+//		{
+//			INTEGER_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildSandCat.class, DataSerializers.VARINT);
+//		}
+//
+//		for (int i = 0; i < FLOAT_DATAPARAMETER_ARRAY.length; ++i)
+//		{
+//			FLOAT_DATAPARAMETER_ARRAY[i] = EntityDataManager.createKey(WildSandCat.class, DataSerializers.FLOAT);
+//		}
 	}
 
 	public WildSandCat(World world)
@@ -124,7 +124,7 @@ public class WildSandCat extends EntityLeInv implements IMixES, IMixESInv
 			SILeLookTo.ID,
 			SILeRandomLook.ID,
 
-			SIEFrame.ID,
+			SIEKey.ID,
 
 			SILeFindMove.ID,
 			SILeMove.ID,
@@ -204,17 +204,17 @@ public class WildSandCat extends EntityLeInv implements IMixES, IMixESInv
 		return BYTE_DATAPARAMETER_ARRAY;
 	}
 
-	@Override
-	public DataParameter<Integer>[] getIntegerDataParameterArray()
-	{
-		return INTEGER_DATAPARAMETER_ARRAY;
-	}
-
-	@Override
-	public DataParameter<Float>[] getFloatDataParameterArray()
-	{
-		return FLOAT_DATAPARAMETER_ARRAY;
-	}
+//	@Override
+//	public DataParameter<Integer>[] getIntegerDataParameterArray()
+//	{
+//		return INTEGER_DATAPARAMETER_ARRAY;
+//	}
+//
+//	@Override
+//	public DataParameter<Float>[] getFloatDataParameterArray()
+//	{
+//		return FLOAT_DATAPARAMETER_ARRAY;
+//	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -239,7 +239,7 @@ public class WildSandCat extends EntityLeInv implements IMixES, IMixESInv
 		MixSISandCat ms = new MixSISandCat(s);
 		s.ms = ms;
 		ms.init();
-		s.initFrame();
+		s.initKey();
 		s.ie = new InvLe();
 		this.ibothleinv = s;
 	}
@@ -297,7 +297,7 @@ public class WildSandCat extends EntityLeInv implements IMixES, IMixESInv
 	}
 
 	@Override
-	public void mulFrame(float[] skinning_float_array, int[] frame_int_array, float partial_ticks)
+	public void mulFrame(float[] skinning_float_array, short[] key_short_array, float partial_ticks)
 	{
 		float head_rot = (float)Math.toRadians(EntityMath.interpolateRotation(this.prevRotationYawHead, this.rotationYawHead, partial_ticks));
 		float head_pitch = (float)Math.toRadians(this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * partial_ticks);

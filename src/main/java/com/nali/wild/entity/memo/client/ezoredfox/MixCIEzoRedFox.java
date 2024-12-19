@@ -38,7 +38,7 @@ public class MixCIEzoRedFox
 		R r = this.c.r;
 		I i = this.c.i;
 		E e = i.getE();
-		int frame = r.frame_int_array[0];
+		short key = r.key_short_array[0];
 
 		if (e.ticksExisted % 100 == 0)
 		{
@@ -53,7 +53,7 @@ public class MixCIEzoRedFox
 		}
 
 		float scale = r.scale;
-		if ((frame > 241 && frame < 595) || (frame > 594 && frame < 800))
+		if ((key > 241 && key < 595) || (key > 594 && key < 800))
 		{
 			e.width = BothDaEzoRedFox.IDA.E_Width() * scale;
 			e.height = 0.7F * scale;

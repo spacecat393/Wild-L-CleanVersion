@@ -1,7 +1,7 @@
 package com.nali.wild.entity.memo.server.ezoredfox;
 
 import com.nali.da.IBothDaE;
-import com.nali.da.IBothDaNE;
+import com.nali.da.IBothDaNe;
 import com.nali.list.entity.ci.CIESound;
 import com.nali.list.network.message.ClientMessage;
 import com.nali.network.NetworkRegistry;
@@ -11,74 +11,74 @@ import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.server.IServerS;
 import com.nali.small.entity.memo.server.ServerLeInv;
 import com.nali.small.entity.memo.server.si.MixSIE;
-import com.nali.small.entity.memo.server.si.frame.FrameS;
-import com.nali.small.entity.memo.server.si.frame.attack.FrameSleAttackPlus;
-import com.nali.small.entity.memo.server.si.frame.floop.FrameSFLoopSit;
-import com.nali.small.entity.memo.server.si.frame.floop.FrameSleFLoopDie;
-import com.nali.small.entity.memo.server.si.frame.floopfree.FrameSFLoopFreeHardReady;
-import com.nali.small.entity.memo.server.si.frame.floopfree.FrameSFLoopFreeSoftReady;
-import com.nali.small.entity.memo.server.si.frame.floopfree.FrameSleFLoopFreePE;
-import com.nali.small.entity.memo.server.si.frame.floopinset.FrameSFLoopInSet;
-import com.nali.small.entity.memo.server.si.frame.floopinset.FrameSleFLoopInSetEndMove;
-import com.nali.small.entity.memo.server.si.frame.floopoffset.FrameSleFLoopOffSetAttackPrepare;
-import com.nali.small.entity.memo.server.si.frame.tloop.FrameSTLoop;
-import com.nali.small.entity.memo.server.si.frame.tloop.FrameSleTLoopAttackWalk;
-import com.nali.small.entity.memo.server.si.frame.tloop.FrameSleTLoopWalk;
-import com.nali.small.entity.memo.server.si.frame.tloopinset.FrameSTLoopInSetSit;
-import com.nali.small.entity.memo.server.si.frame.tloopinset.FrameSleTLoopInSetDie;
-import com.nali.small.entity.memo.server.si.frame.tloopinset.FrameSleTLoopInSetWalk;
+import com.nali.small.entity.memo.server.si.frame.KeyS;
+import com.nali.small.entity.memo.server.si.frame.attack.KeySleAttackPlus;
+import com.nali.small.entity.memo.server.si.frame.floop.KeySFLoopSit;
+import com.nali.small.entity.memo.server.si.frame.floop.KeySleFLoopDie;
+import com.nali.small.entity.memo.server.si.frame.floopfree.KeySFLoopFreeHardReady;
+import com.nali.small.entity.memo.server.si.frame.floopfree.KeySFLoopFreeSoftReady;
+import com.nali.small.entity.memo.server.si.frame.floopfree.KeySleFLoopFreePE;
+import com.nali.small.entity.memo.server.si.frame.floopinset.KeySFLoopInSet;
+import com.nali.small.entity.memo.server.si.frame.floopinset.KeySleFLoopInSetEndMove;
+import com.nali.small.entity.memo.server.si.frame.floopoffset.KeySleFLoopOffSetAttackPrepare;
+import com.nali.small.entity.memo.server.si.frame.tloop.KeySTLoop;
+import com.nali.small.entity.memo.server.si.frame.tloop.KeySleTLoopAttackWalk;
+import com.nali.small.entity.memo.server.si.frame.tloop.KeySleTLoopWalk;
+import com.nali.small.entity.memo.server.si.frame.tloopinset.KeySTLoopInSetSit;
+import com.nali.small.entity.memo.server.si.frame.tloopinset.KeySleTLoopInSetDie;
+import com.nali.small.entity.memo.server.si.frame.tloopinset.KeySleTLoopInSetWalk;
 import com.nali.system.bytes.ByteWriter;
 import net.minecraft.util.DamageSource;
 
 public class ServerEzoRedFox
 <
 	IE extends InvLe,
-	BD extends IBothDaE & IBothDaNE,
+	BD extends IBothDaE & IBothDaNe,
 	E extends EntityLeInv,
 	I extends IMixE<BD, E>,
 	MS extends MixSIE<BD, E, I, ?>
 > extends ServerLeInv<IE, BD, E, I, MS> implements IServerS
 {
-	public static int[][] FRAME_INT_2D_ARRAY = new int[][]
+	public static short[] FIX_KEY_SHORT_ARRAY = new short[]
 	{
-		{ 0, 25 },//walk
-		{ 26, 84 },
-		{ 85, 110 },
-		{ 242, 342 },//sit
-		{ 343, 543 },
-		{ 544, 594 },
-		{ 595, 655 },//wait
-		{ 656, 693 },
-		{ 694, 799 },
-		{ 800, 866 },//yes
-		{ 867, 950 },//sad
-		{ 990, 1073 },//joy
-		{ 1074, 1163 },//idle
-		{ 951, 989 },//run
-		{ 111, 190 },//attack long
-		{ 191, 241 }//attack short
+		0, 25,//walk
+		26, 84,
+		85, 110,
+		242, 342,//sit
+		343, 543,
+		544, 594,
+		595, 655,//wait
+		656, 693,
+		694, 799,
+		800, 866,//yes
+		867, 950,//sad
+		990, 1073,//joy
+		1074, 1163,//idle
+		951, 989,//run
+		111, 190,//attack long
+		191, 241//attack short
 	};
-	public static byte[] FRAME_BYTE_ARRAY = new byte[]
+	public static byte[] KEY_DATA_BYTE_ARRAY = new byte[]
 	{
-		0, 3, 4,
-		0, 3, 5,
-		0, 3,
-		0, 6, 7,
-		0, 6, 8,
-		0, 6,
-		0, 14, 14,
-		0, 15, 15,
-		0, 2, 14, 15,
-		0, 13,
-		0, 0, 1,
-		0, 0, 2,
-		0, 0,
-		0, 9,
-		0, 10,
-		0, 11,
-		0, 12
+		0, 3*2, 4*2,
+		0, 3*2, 5*2,
+		0, 3*2,
+		0, 6*2, 7*2,
+		0, 6*2, 8*2,
+		0, 6*2,
+		0, 14*2, 14*2,
+		0, 15*2, 15*2,
+		0, 2, 14*2, 15*2,
+		0, 13*2,
+		0, 0*2, 1*2,
+		0, 0*2, 2*2,
+		0, 0*2,
+		0, 9*2,
+		0, 10*2,
+		0, 11*2,
+		0, 12*2
 	};
-	public FrameS[][] frames_2d_array;
+	public KeyS[][] keys_2d_array;
 
 	public ServerEzoRedFox(I i)
 	{
@@ -86,33 +86,33 @@ public class ServerEzoRedFox
 	}
 
 	@Override
-	public void initFrame()
+	public void initKey()
 	{
-		this.frames_2d_array = new FrameS[][]
+		this.keys_2d_array = new KeyS[][]
 		{
 			{
-				new FrameSleTLoopInSetDie(this, 0),
-				new FrameSleFLoopInSetEndMove(this, 3),
-				new FrameSleFLoopDie(this, 6),
+				new KeySleTLoopInSetDie(this, (byte)0),
+				new KeySleFLoopInSetEndMove(this, (byte)3),
+				new KeySleFLoopDie(this, (byte)6),
 
-				new FrameSTLoopInSetSit(this, 8),
-				new FrameSleFLoopInSetEndMove(this, 11),
-				new FrameSFLoopSit(this, 14),
+				new KeySTLoopInSetSit(this, (byte)8),
+				new KeySleFLoopInSetEndMove(this, (byte)11),
+				new KeySFLoopSit(this, (byte)14),
 
-				new FrameSleFLoopOffSetAttackPrepare(this, 16),
-				new FrameSleFLoopOffSetAttackPrepare(this, 19),
-				new FrameSleAttackPlus(this, 22/*, (byte)2*/),
+				new KeySleFLoopOffSetAttackPrepare(this, (byte)16),
+				new KeySleFLoopOffSetAttackPrepare(this, (byte)19),
+				new KeySleAttackPlus(this, (byte)22/*, (byte)2*/),
 
-				new FrameSleTLoopAttackWalk(this, 25+1+2),
+				new KeySleTLoopAttackWalk(this, (byte)(25+1+2)),
 
-				new FrameSleTLoopInSetWalk(this, 27+1+2),
-				new FrameSFLoopInSet(this, 30+1+2),
-				new FrameSleTLoopWalk(this, 33+1+2),
+				new KeySleTLoopInSetWalk(this, (byte)(27+1+2)),
+				new KeySFLoopInSet(this, (byte)(30+1+2)),
+				new KeySleTLoopWalk(this, (byte)(33+1+2)),
 
-				new FrameSFLoopFreeHardReady(this, 35+1+2),
-				new FrameSFLoopFreeSoftReady(this, 37+1+2),
-				new FrameSleFLoopFreePE(this, 39+1+2),
-				new FrameSTLoop(this, 41+1+2)
+				new KeySFLoopFreeHardReady(this, (byte)(35+1+2)),
+				new KeySFLoopFreeSoftReady(this, (byte)(37+1+2)),
+				new KeySleFLoopFreePE(this, (byte)(39+1+2)),
+				new KeySTLoop(this, (byte)(41+1+2))
 			}
 		};
 //		() -> this.isZeroMove() && serverentitiesmemory.entitiesaimemory.skinningentitiesliveframe_array[0].setTLoopInSet(3, 4),
@@ -186,21 +186,21 @@ public class ServerEzoRedFox
 	}
 
 	@Override
-	public FrameS[][] getFrameS2DArray()
+	public KeyS[][] getKeyS2DArray()
 	{
-		return this.frames_2d_array;
+		return this.keys_2d_array;
 	}
 
 	@Override
-	public byte[] getFrameByteArray()
+	public byte[] getKeyDataByteArray()
 	{
-		return FRAME_BYTE_ARRAY;
+		return KEY_DATA_BYTE_ARRAY;
 	}
 
 	@Override
-	public int[][] getFrame2DIntArray()
+	public short[] getFixKeyShortArray()
 	{
-		return FRAME_INT_2D_ARRAY;
+		return FIX_KEY_SHORT_ARRAY;
 	}
 
 	@Override
@@ -208,7 +208,7 @@ public class ServerEzoRedFox
 	{
 		byte[] byte_array = new byte[1 + 8 + 1 + 4];
 		this.setCCI(byte_array, CIESound.ID);
-		ByteWriter.set(byte_array, this.i.getBD().NE_HURT(), 1 + 8 + 1);
+		ByteWriter.set(byte_array, this.i.getBD().Ne_HURT(), 1 + 8 + 1);
 		NetworkRegistry.I.sendToAll(new ClientMessage(byte_array));
 	}
 
@@ -217,7 +217,7 @@ public class ServerEzoRedFox
 	{
 		byte[] byte_array = new byte[1 + 8 + 1 + 4];
 		this.setCCI(byte_array, CIESound.ID);
-		ByteWriter.set(byte_array, this.i.getBD().NE_DEATH(), 1 + 8 + 1);
+		ByteWriter.set(byte_array, this.i.getBD().Ne_DEATH(), 1 + 8 + 1);
 		NetworkRegistry.I.sendToAll(new ClientMessage(byte_array));
 	}
 }

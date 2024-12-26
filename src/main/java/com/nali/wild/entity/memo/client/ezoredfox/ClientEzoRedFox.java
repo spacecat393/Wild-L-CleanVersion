@@ -2,6 +2,7 @@ package com.nali.wild.entity.memo.client.ezoredfox;
 
 import com.nali.list.da.BothDaEzoRedFox;
 import com.nali.list.render.RenderEzoRedFox;
+import com.nali.small.entity.EntityLe;
 import com.nali.small.entity.IMixE;
 import com.nali.small.entity.IMixES;
 import com.nali.small.entity.IMixESInv;
@@ -21,7 +22,7 @@ public class ClientEzoRedFox
 <
 	IE extends InvLe,
 	R extends RenderEzoRedFox<IE, E, I, MC, MB, MR, ?>,
-	E extends EntityLivingBase,
+	E extends EntityLe,
 	I extends IMixE<BothDaEzoRedFox, E> & IMixES & IMixESInv,
 	MC extends MixCIE<BothDaEzoRedFox, R, E, I, MB, MR, ?>,
 	MB extends MixBoxSleInv<BothDaEzoRedFox, R, E, I, MC, MR, ?>,

@@ -2,6 +2,7 @@ package com.nali.wild.entity.memo.client.sandcat;
 
 import com.nali.list.da.BothDaSandCat;
 import com.nali.list.render.RenderSandCat;
+import com.nali.small.entity.EntityLe;
 import com.nali.small.entity.IMixE;
 import com.nali.small.entity.IMixES;
 import com.nali.small.entity.IMixESInv;
@@ -21,7 +22,7 @@ public class ClientSandCat
 <
 	IE extends InvLe,
 	R extends RenderSandCat<IE, E, I, MC, MB, MR, ?>,
-	E extends EntityLivingBase,
+	E extends EntityLe,
 	I extends IMixE<BothDaSandCat, E> & IMixES & IMixESInv,
 	MC extends MixCIE<BothDaSandCat, R, E, I, MB, MR, ?>,
 	MB extends MixBoxSleInv<BothDaSandCat, R, E, I, MC, MR, ?>,

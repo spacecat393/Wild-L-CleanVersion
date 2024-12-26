@@ -7,7 +7,7 @@ import static com.nali.list.data.WildData.MODEL_STEP;
 
 public class BothDaSandCat implements IBothDaE, IBothDaO, IBothDaS, IBothDaSe, IBothDaNe
 {
-	public static BothDaSandCat IDA = new BothDaSandCat();
+	public static BothDaSandCat IDA;
 
 	@Override
 	public float E_Width()
@@ -33,6 +33,7 @@ public class BothDaSandCat implements IBothDaE, IBothDaO, IBothDaS, IBothDaSe, I
 		return (byte)
 		(
 			4 +//scale
+			4 +//rotation_yaw_head
 			1 +//inv
 			this.S_MaxFrame() * 2
 		);
@@ -66,6 +67,7 @@ public class BothDaSandCat implements IBothDaE, IBothDaO, IBothDaS, IBothDaSe, I
 	public byte Se_SyncIndex()
 	{
 		return
+			4 +
 			4 +
 			1;
 	}

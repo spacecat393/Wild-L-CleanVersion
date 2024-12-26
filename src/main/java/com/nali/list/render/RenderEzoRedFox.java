@@ -1,6 +1,7 @@
 package com.nali.list.render;
 
 import com.nali.list.da.BothDaEzoRedFox;
+import com.nali.small.entity.EntityLe;
 import com.nali.small.entity.IMixE;
 import com.nali.small.entity.IMixES;
 import com.nali.small.entity.IMixESInv;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 public class RenderEzoRedFox
 <
 	IE extends InvLe,
-	E extends EntityLivingBase,
+	E extends EntityLe,
 	I extends IMixE<BothDaEzoRedFox, E> & IMixES & IMixESInv,
 	MC extends MixCIE<BothDaEzoRedFox, ?, E, I, MB, MR, C>,
 	MB extends MixBoxSleInv<BothDaEzoRedFox, ?, E, I, MC, MR, C>,

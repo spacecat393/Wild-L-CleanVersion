@@ -10,7 +10,7 @@ import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.client.ClientLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.small.entity.memo.client.ci.MixCIE;
-import net.minecraft.entity.EntityLivingBase;
+import com.nali.small.render.IRenderS;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class MixCISandCat
 <
 	IE extends InvLe,
-	R extends RenderSandCat<IE, E, I, ?, MB, MR, C>,
+	R extends RenderSandCat<IE, E, I, ?, MB, MR, C> & IRenderS<BothDaSandCat, R>,
 	E extends EntityLe,
 	I extends IMixE<BothDaSandCat, E> & IMixES & IMixESInv,
 	MB extends MixBoxSleInv<BothDaSandCat, R, E, I, ?, MR, C>,

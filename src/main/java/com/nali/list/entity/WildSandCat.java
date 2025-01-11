@@ -1,10 +1,10 @@
 package com.nali.list.entity;
 
 import com.nali.da.IBothDaE;
+import com.nali.list.da.BothDaSandCat;
 import com.nali.list.entity.ci.CIEFrame;
 import com.nali.list.entity.ci.CIESound;
 import com.nali.list.entity.si.*;
-import com.nali.list.render.RenderSandCat;
 import com.nali.math.M4x4;
 import com.nali.math.Quaternion;
 import com.nali.small.entity.EntityLeInv;
@@ -14,13 +14,13 @@ import com.nali.small.entity.IMixESInv;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.IBothLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
-import com.nali.list.da.BothDaSandCat;
 import com.nali.sound.SoundE;
 import com.nali.wild.entity.memo.client.sandcat.ClientSandCat;
 import com.nali.wild.entity.memo.client.sandcat.MixCISandCat;
 import com.nali.wild.entity.memo.client.sandcat.MixRenderSandCat;
 import com.nali.wild.entity.memo.server.sandcat.MixSISandCat;
 import com.nali.wild.entity.memo.server.sandcat.ServerSandCat;
+import com.nali.wild.render.entity.RenderSandCat;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;

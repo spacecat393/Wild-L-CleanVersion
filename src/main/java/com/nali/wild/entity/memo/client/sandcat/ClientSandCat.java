@@ -12,8 +12,8 @@ import com.nali.small.entity.memo.client.IClientESound;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.small.entity.memo.client.ci.MixCIE;
 import com.nali.small.entity.memo.client.render.mix.MixRenderSleInv;
+import com.nali.small.render.IRenderS;
 import com.nali.sound.SoundE;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ClientSandCat
 <
 	IE extends InvLe,
-	R extends RenderSandCat<IE, E, I, MC, MB, MR, ?>,
+	R extends RenderSandCat<IE, E, I, MC, MB, MR, ?> & IRenderS<BothDaSandCat, R>,
 	E extends EntityLe,
 	I extends IMixE<BothDaSandCat, E> & IMixES & IMixESInv,
 	MC extends MixCIE<BothDaSandCat, R, E, I, MB, MR, ?>,

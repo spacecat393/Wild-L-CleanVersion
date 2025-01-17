@@ -1,6 +1,7 @@
 package com.nali.list.entity;
 
 import com.nali.da.IBothDaE;
+import com.nali.list.da.BothDaEzoRedFox;
 import com.nali.list.entity.ci.CIEFrame;
 import com.nali.list.entity.ci.CIESound;
 import com.nali.list.entity.si.*;
@@ -13,7 +14,9 @@ import com.nali.small.entity.IMixESInv;
 import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.IBothLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
-import com.nali.list.da.BothDaEzoRedFox;
+import com.nali.small.entity.memo.server.si.SILeLook;
+import com.nali.small.entity.memo.server.si.path.SILeFindMove;
+import com.nali.small.entity.memo.server.si.path.SILeMineTo;
 import com.nali.sound.SoundE;
 import com.nali.wild.entity.memo.client.ezoredfox.ClientEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixCIEzoRedFox;
@@ -113,7 +116,7 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 			SILeMineTo.ID,
 			SILeUseTo.ID,
 			SIESit.ID,
-			SILeSetLocation.ID,
+			SIESetLocation.ID,
 			SILeFollow.ID,
 			SILeRevive.ID,
 			SILeCareOwner.ID,
@@ -128,7 +131,7 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 
 			SILeFindMove.ID,
 			//SILeMove.ID,
-			SILeWalkTo.ID,
+			SIEWalkTo.ID,
 			SILeLook.ID,
 			//SILeJump.ID
 		};
@@ -181,7 +184,7 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.05D);
+		//this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.05D);
 		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(50.0D);
 		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(20.0D);
 	}

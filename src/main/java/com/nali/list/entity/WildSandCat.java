@@ -5,6 +5,7 @@ import com.nali.list.da.BothDaSandCat;
 import com.nali.list.entity.ci.CIEFrame;
 import com.nali.list.entity.ci.CIESound;
 import com.nali.list.entity.si.*;
+import com.nali.list.render.RenderSandCat;
 import com.nali.math.M4x4;
 import com.nali.math.V4;
 import com.nali.small.entity.EntityLeInv;
@@ -23,7 +24,6 @@ import com.nali.wild.entity.memo.client.sandcat.MixCISandCat;
 import com.nali.wild.entity.memo.client.sandcat.MixRenderSandCat;
 import com.nali.wild.entity.memo.server.sandcat.MixSISandCat;
 import com.nali.wild.entity.memo.server.sandcat.ServerSandCat;
-import com.nali.wild.render.entity.RenderSandCat;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -137,15 +137,15 @@ public class WildSandCat extends EntityLeInv implements IMixES, IMixESInv
 		};
 	}
 
-	@SideOnly(Side.CLIENT)
-	public static ClientSandCat getC()
-	{
-		RenderSandCat r = new RenderSandCat();
-		ClientSandCat c = new ClientSandCat(r);
-		r.c = c;
-		c.mr = new MixRenderSandCat(c);
-		return c;
-	}
+//	@SideOnly(Side.CLIENT)
+//	public static ClientSandCat getC()
+//	{
+//		RenderSandCat r = new RenderSandCat();
+//		ClientSandCat c = new ClientSandCat(r);
+//		r.c = c;
+//		c.mr = new MixRenderSandCat(c);
+//		return c;
+//	}
 //	@Override
 //	@SideOnly(Side.CLIENT)
 //	public void initFakeFrame()

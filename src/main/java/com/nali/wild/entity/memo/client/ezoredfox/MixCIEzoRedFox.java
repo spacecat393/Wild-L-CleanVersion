@@ -10,8 +10,6 @@ import com.nali.small.entity.inv.InvLe;
 import com.nali.small.entity.memo.client.ClientLeInv;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.small.entity.memo.client.ci.MixCIE;
-import com.nali.small.render.IRenderS;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -19,13 +17,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class MixCIEzoRedFox
 <
 	IE extends InvLe,
-	R extends RenderEzoRedFox<IE, E, I, ?, MB, MR, C> & IRenderS<BothDaEzoRedFox, R>,
+	BD extends BothDaEzoRedFox,
+	R extends RenderEzoRedFox<IE, E, I, ?, MB, MR, C, BD, R>,
 	E extends EntityLe,
-	I extends IMixE<BothDaEzoRedFox, E> & IMixES & IMixESInv,
-	MB extends MixBoxSleInv<BothDaEzoRedFox, R, E, I, ?, MR, C>,
-	MR extends MixRenderEzoRedFox<IE, BothDaEzoRedFox, R, E, I, ?, MB, C>,
-	C extends ClientLeInv<IE, BothDaEzoRedFox, R, E, I, ?, MB, MR>
-> extends MixCIE<BothDaEzoRedFox, R, E, I, MB, MR, C>
+	I extends IMixE<BD, E> & IMixES & IMixESInv,
+	MB extends MixBoxSleInv<BD, R, E, I, ?, MR, C>,
+	MR extends MixRenderEzoRedFox<IE, BD, R, E, I, ?, MB, C>,
+	C extends ClientLeInv<IE, BD, R, E, I, ?, MB, MR>
+> extends MixCIE<BD, R, E, I, MB, MR, C>
 {
 	public int eyes_tick = 0;
 

@@ -5,6 +5,7 @@ import com.nali.list.da.BothDaEzoRedFox;
 import com.nali.list.entity.ci.CIEFrame;
 import com.nali.list.entity.ci.CIESound;
 import com.nali.list.entity.si.*;
+import com.nali.list.render.RenderEzoRedFox;
 import com.nali.math.M4x4;
 import com.nali.math.V4;
 import com.nali.small.entity.EntityLeInv;
@@ -23,7 +24,6 @@ import com.nali.wild.entity.memo.client.ezoredfox.MixCIEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixRenderEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.MixSIEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.ServerEzoRedFox;
-import com.nali.wild.render.entity.RenderEzoRedFox;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -137,15 +137,15 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 		};
 	}
 
-	@SideOnly(Side.CLIENT)
-	public static ClientEzoRedFox getC()
-	{
-		RenderEzoRedFox r = new RenderEzoRedFox();
-		ClientEzoRedFox c = new ClientEzoRedFox(r);
-		r.c = c;
-		c.mr = new MixRenderEzoRedFox(c);
-		return c;
-	}
+//	@SideOnly(Side.CLIENT)
+//	public static ClientEzoRedFox getC()
+//	{
+//		RenderEzoRedFox r = new RenderEzoRedFox();
+//		ClientEzoRedFox c = new ClientEzoRedFox(r);
+//		r.c = c;
+//		c.mr = new MixRenderEzoRedFox(c);
+//		return c;
+//	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)

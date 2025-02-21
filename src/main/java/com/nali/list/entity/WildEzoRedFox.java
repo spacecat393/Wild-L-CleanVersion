@@ -8,20 +8,19 @@ import com.nali.list.entity.si.*;
 import com.nali.list.render.RenderEzoRedFox;
 import com.nali.math.M4x4;
 import com.nali.math.V4;
-import com.nali.small.entity.EntityLeInv;
-import com.nali.small.entity.EntityMath;
+import com.nali.small.entity.EntityLe;
 import com.nali.small.entity.IMixES;
 import com.nali.small.entity.IMixESInv;
-import com.nali.small.entity.inv.InvLe;
-import com.nali.small.entity.memo.IBothLeInv;
+import com.nali.small.entity.memo.IBothLe;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
+import com.nali.small.entity.memo.client.render.mix.MixRenderSle;
 import com.nali.small.entity.memo.server.si.SILeLook;
 import com.nali.small.entity.memo.server.si.path.SILeFindMove;
 import com.nali.small.entity.memo.server.si.path.SILeMineTo;
 import com.nali.sound.SoundE;
+import com.nali.system.Time;
 import com.nali.wild.entity.memo.client.ezoredfox.ClientEzoRedFox;
 import com.nali.wild.entity.memo.client.ezoredfox.MixCIEzoRedFox;
-import com.nali.wild.entity.memo.client.ezoredfox.MixRenderEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.MixSIEzoRedFox;
 import com.nali.wild.entity.memo.server.ezoredfox.ServerEzoRedFox;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -34,7 +33,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static com.nali.list.data.WildData.MODEL_STEP;
 
-public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
+public class WildEzoRedFox extends EntityLe implements IMixES, IMixESInv
 {
 	public static int eggPrimary = 0xffb56d;
 	public static int eggSecondary = 0xc9453d;
@@ -46,7 +45,7 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 	public static byte[] CI_BYTE_ARRAY;
 	public static byte[] SI_BYTE_ARRAY;
 
-	public IBothLeInv ibothleinv;
+	public IBothLe ibothle;
 
 	public static int[] IV_INT_ARRAY = new int[]
 	{
@@ -121,8 +120,8 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 			SIERevive.ID,
 			SIECareOwner.ID,
 			SILeAttack.ID,
-			SILeInvManageItem.ID,
-			SIEInvGet.ID,
+			SIEManageItem.ID,
+			SIEInv.ID,
 			SIERandomWalk.ID,
 			SIELookTo.ID,
 			SIERandomLook.ID,
@@ -227,12 +226,14 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 		ClientEzoRedFox c = new ClientEzoRedFox(this, r, new SoundE());
 		MixCIEzoRedFox mc = new MixCIEzoRedFox(c);
 		c.mc = mc;
-		mc.init();
 		c.mb = new MixBoxSleInv(c);
-		c.mr = new MixRenderEzoRedFox(c);
+//		c.mr = new MixRenderEzoRedFox(c);
+		MixRenderSle mr = new MixRenderSle(c);
+		mr.shadow_opaque = 0.5F;
+		mr.shadow_size = 0.25F;
+		c.mr = mr;
 		r.c = c;
-		c.ie = new InvLe();
-		this.ibothleinv = c;
+		this.ibothle = c;
 	}
 
 	@Override
@@ -243,8 +244,8 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 		s.ms = ms;
 		ms.init();
 		s.initKey();
-		s.ie = new InvLe();
-		this.ibothleinv = s;
+		s.init();
+		this.ibothle = s;
 	}
 
 	@Override
@@ -254,9 +255,9 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 	}
 
 	@Override
-	public IBothLeInv getB()
+	public IBothLe getB()
 	{
-		return this.ibothleinv;
+		return this.ibothle;
 	}
 
 	@Override
@@ -278,11 +279,29 @@ public class WildEzoRedFox extends EntityLeInv implements IMixES, IMixESInv
 	}
 
 	@Override
-	public void mulFrame(float[] skinning_float_array, short[] key_short_array, float partial_ticks)
+	public void mulFrame(float[] skinning_float_array, short[] key_short_array)
 	{
-		float body_rot = (float)Math.toRadians(EntityMath.interpolateRotation(this.prev_rotation_yaw_head, this.rotation_yaw_head, partial_ticks));
-		float head_pitch = (float)Math.toRadians(this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * partial_ticks);
-		float head_rot = (float)Math.toRadians(EntityMath.interpolateRotation(this.prevRotationYaw, this.rotationYaw, partial_ticks));
+		float
+			body_rot,
+			head_rot,
+			head_pitch;
+
+		if (this.world.isRemote)
+		{
+			this.prev_rotation_yaw_body += (this.rotation_yaw_body - this.prev_rotation_yaw_body) * (float) Time.LINE;
+			this.prev_rotation_yaw += (this.rotationYaw - this.prev_rotation_yaw) * (float)Time.LINE;
+			this.prev_rotation_pitch += (this.rotationPitch - this.prev_rotation_pitch) * (float)Time.LINE;
+			body_rot = (float)Math.toRadians(this.prev_rotation_yaw_body);
+			head_rot = (float)Math.toRadians(this.prev_rotation_yaw);
+			head_pitch = (float)Math.toRadians(this.prev_rotation_pitch);
+		}
+		else
+		{
+			body_rot = (float)Math.toRadians(this.rotation_yaw_body);
+			head_rot = (float)Math.toRadians(this.rotationYaw);
+			head_pitch = (float)Math.toRadians(this.rotationPitch);
+		}
+
 		float net_head_yaw = head_rot - body_rot;
 
 		if (head_pitch > 1.04719755119659774615F)

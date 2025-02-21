@@ -6,24 +6,23 @@ import com.nali.small.entity.EntityLe;
 import com.nali.small.entity.IMixE;
 import com.nali.small.entity.IMixES;
 import com.nali.small.entity.IMixESInv;
-import com.nali.small.entity.inv.InvLe;
-import com.nali.small.entity.memo.client.ClientLeInv;
+import com.nali.small.entity.memo.client.ClientLe;
 import com.nali.small.entity.memo.client.box.mix.MixBoxSleInv;
 import com.nali.small.entity.memo.client.ci.MixCIE;
+import com.nali.small.entity.memo.client.render.mix.MixRenderSle;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class MixCISandCat
 <
-	IE extends InvLe,
 	BD extends BothDaSandCat,
-	R extends RenderSandCat<IE, E, I, ?, MB, MR, C, BD, R>,
+	R extends RenderSandCat<E, I, ?, MB, MR, C, BD, R>,
 	E extends EntityLe,
 	I extends IMixE<BD, E> & IMixES & IMixESInv,
 	MB extends MixBoxSleInv<BD, R, E, I, ?, MR, C>,
-	MR extends MixRenderSandCat<IE, BD, R, E, I, ?, MB, C>,
-	C extends ClientLeInv<IE, BD, R, E, I, ?, MB, MR>
+	MR extends MixRenderSle<BD, R, E, I, ?, MB, C>,
+	C extends ClientLe<BD, R, E, I, ?, MB, MR>
 > extends MixCIE<BD, R, E, I, MB, MR, C>
 {
 	public int eyes_tick = 0;
@@ -92,16 +91,16 @@ public class MixCISandCat
 //		}
 	}
 
-	@Override
-	public void onReadNBT()
-	{
-		R r = this.c.r;
-//		skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
-//		skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
-		r.model_byte_array[0] &= 239 & 127;
-//		skinningrender.model_byte_array[10 / 8] &= 251;//255 - Math.pow(2, 10 % 8)
-//		skinningrender.model_byte_array[11 / 8] &= 247;//255 - Math.pow(2, 11 % 8)
-		r.model_byte_array[1] &= 251 & 247;
-		super.onReadNBT();
-	}
+//	@Override
+//	public void onReadNBT()
+//	{
+//		R r = this.c.r;
+////		skinningrender.model_byte_array[4 / 8] &= 239;//255 - Math.pow(2, 4 % 8)
+////		skinningrender.model_byte_array[7 / 8] &= 127;//255 - Math.pow(2, 7 % 8)
+//		r.model_byte_array[0] &= 239 & 127;
+////		skinningrender.model_byte_array[10 / 8] &= 251;//255 - Math.pow(2, 10 % 8)
+////		skinningrender.model_byte_array[11 / 8] &= 247;//255 - Math.pow(2, 11 % 8)
+//		r.model_byte_array[1] &= 251 & 247;
+//		super.onReadNBT();
+//	}
 }

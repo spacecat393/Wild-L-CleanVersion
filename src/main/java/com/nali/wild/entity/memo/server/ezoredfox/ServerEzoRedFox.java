@@ -30,6 +30,8 @@ import com.nali.system.bytes.ByteWriter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 
+import java.util.Arrays;
+
 public class ServerEzoRedFox
 <
 	BD extends IBothDaE & IBothDaNe,
@@ -89,6 +91,7 @@ public class ServerEzoRedFox
 	{
 		super.init();
 		this.sileinv.itemstack_array = new ItemStack[4*9];
+		Arrays.fill(this.sileinv.itemstack_array, ItemStack.EMPTY);
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class WildEzoRedFox extends EntityLe implements IMixES, IMixESInv
 	public static int eggPrimary = 0xffb56d;
 	public static int eggSecondary = 0xc9453d;
 
-	public final static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[BothDaEzoRedFox.IDA.E_MaxSync()];
+	public static DataParameter<Byte>[] BYTE_DATAPARAMETER_ARRAY = new DataParameter[BothDaEzoRedFox.IDA.E_MaxSync()];
 //	public final static DataParameter<Integer>[] INTEGER_DATAPARAMETER_ARRAY = new DataParameter[BothDaEzoRedFox.IDA.S_MaxFrame()];
 //	public final static DataParameter<Float>[] FLOAT_DATAPARAMETER_ARRAY = new DataParameter[1];
 

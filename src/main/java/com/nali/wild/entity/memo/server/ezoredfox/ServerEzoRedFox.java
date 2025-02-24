@@ -40,25 +40,6 @@ public class ServerEzoRedFox
 	MS extends MixSIE<BD, E, I, ?>
 > extends ServerLe<BD, E, I, MS> implements IServerS
 {
-	public static short[] FIX_KEY_SHORT_ARRAY = new short[]
-	{
-		0, 25,//walk
-		26, 84,
-		85, 110,
-		242, 342,//sit
-		343, 543,
-		544, 594,
-		595, 655,//wait
-		656, 693,
-		694, 799,
-		800, 866,//yes
-		867, 950,//sad
-		990, 1073,//joy
-		1074, 1163,//idle
-		951, 989,//run
-		111, 190,//attack long
-		191, 241//attack short
-	};
 	public static byte[] KEY_DATA_BYTE_ARRAY = new byte[]
 	{
 		0, 3*2, 4*2,
@@ -206,11 +187,11 @@ public class ServerEzoRedFox
 		return KEY_DATA_BYTE_ARRAY;
 	}
 
-	@Override
-	public short[] getFixKeyShortArray()
-	{
-		return FIX_KEY_SHORT_ARRAY;
-	}
+//	@Override
+//	public short[] getFixKeyShortArray()
+//	{
+//		return FIX_KEY_SHORT_ARRAY;
+//	}
 
 	@Override
 	public void getHurtSound(DamageSource damagesource)

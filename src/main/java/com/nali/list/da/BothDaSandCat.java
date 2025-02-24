@@ -9,6 +9,27 @@ public class BothDaSandCat implements IBothDaE, IBothDaO, IBothDaS, IBothDaSe, I
 {
 	public static BothDaSandCat IDA;
 
+	public static short[] FIX_KEY_SHORT_ARRAY = new short[]
+	{
+		1403, 1432,//walk
+		1364, 1402,//run
+		313, 429,//pat
+		1044, 1144,//sit
+		1145, 1245,
+		1246, 1296,
+		0, 93,//wait
+		94, 242,
+		243, 312,
+		430, 496,//yes
+		497, 597,//sad
+		598, 681,//joy 1
+		834, 892,//idle
+		682, 757,//cool
+		959, 1043,//attack long
+		893, 958,//attack short
+		758, 833//joy 2
+	};
+
 	@Override
 	public float E_Width()
 	{
@@ -34,8 +55,7 @@ public class BothDaSandCat implements IBothDaE, IBothDaO, IBothDaS, IBothDaSe, I
 		(
 			4 +//scale
 			4 +//rotation_yaw_head
-			1 +//inv
-			this.S_MaxFrame() * 2
+			this.S_MaxFrame() * (4 + 1)
 		);
 	}
 
@@ -64,12 +84,17 @@ public class BothDaSandCat implements IBothDaE, IBothDaO, IBothDaS, IBothDaSe, I
 	}
 
 	@Override
+	public short[] S_FixKeyShortArray()
+	{
+		return FIX_KEY_SHORT_ARRAY;
+	}
+
+	@Override
 	public byte Se_SyncIndex()
 	{
 		return
 			4 +
-			4 +
-			1;
+			4;
 	}
 
 	@Override

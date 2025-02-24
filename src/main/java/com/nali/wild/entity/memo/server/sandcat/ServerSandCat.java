@@ -38,26 +38,6 @@ public class ServerSandCat
 	MS extends MixSIE<BD, E, I, ?>
 > extends ServerLe<BD, E, I, MS> implements IServerS
 {
-	public static short[] FIX_KEY_SHORT_ARRAY = new short[]
-	{
-		1403, 1432,//walk
-		1364, 1402,//run
-		313, 429,//pat
-		1044, 1144,//sit
-		1145, 1245,
-		1246, 1296,
-		0, 93,//wait
-		94, 242,
-		243, 312,
-		430, 496,//yes
-		497, 597,//sad
-		598, 681,//joy 1
-		834, 892,//idle
-		682, 757,//cool
-		959, 1043,//attack long
-		893, 958,//attack short
-		758, 833//joy 2
-	};
 	public static byte[] KEY_DATA_BYTE_ARRAY = new byte[]
 	{
 		0, 3*2, 4*2,
@@ -240,11 +220,11 @@ public class ServerSandCat
 		return KEY_DATA_BYTE_ARRAY;
 	}
 
-	@Override
-	public short[] getFixKeyShortArray()
-	{
-		return FIX_KEY_SHORT_ARRAY;
-	}
+//	@Override
+//	public short[] getFixKeyShortArray()
+//	{
+//		return FIX_KEY_SHORT_ARRAY;
+//	}
 
 	@Override
 	public void getHurtSound(DamageSource damagesource)
